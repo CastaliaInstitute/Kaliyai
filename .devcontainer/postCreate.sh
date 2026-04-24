@@ -1,30 +1,57 @@
 #!/usr/bin/env bash
 # Post-create setup for the Kali AI / Anubis Codespace.
 # Runs once after the devcontainer image is built.
+#
+# Gemini: never log or export the key. Prefer GitHub Codespace secrets
+# (GEMINI_API_KEY) or a local, gitignored nethunter-gemini-mcp/.env. Gradle
+# reads that file; we do not source it into .bashrc (keeps the key out of
+# generic shell environments).
 
 set -euo pipefail
 
-echo "==> [1/5] Seeding .env from GEMINI_API_KEY secret (if set)"
-if [[ -n "${GEMINI_API_KEY:-}" ]]; then
-  cat > nethunter-gemini-mcp/.env <<EOF
-GEMINI_API_KEY=${GEMINI_API_KEY}
-EOF
-  echo "    wrote nethunter-gemini-mcp/.env"
+MCP_ENV="nethunter-gemini-mcp/.env"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+write_env_from_env_var() {
+  umask 077
+  if [[ -n "${GEMINI_API_KEY:-}" ]]; then
+    printf 'GEMINI_API_KEY=%s\n' "${GEMINI_API_KEY}" > "${REPO_ROOT}/${MCP_ENV}"
+    echo "    wrote ${MCP_ENV} (from environment; key not shown)"
+  fi
+}
+
+echo "==> [1/5] nethunter-gemini-mcp/.env (Gradle; gitignored, never committed)"
+# Priority: 1) keep existing  2) repo-root .env copy  3) $GEMINI_API_KEY (e.g. Codespace secret)
+if [[ -f "${REPO_ROOT}/${MCP_ENV}" ]]; then
+  if grep -qE '^[[:space:]]*GEMINI_API_KEY[[:space:]]*=' "${REPO_ROOT}/${MCP_ENV}" 2>/dev/null; then
+    echo "    using existing ${MCP_ENV}"
+  else
+    if [[ -n "${GEMINI_API_KEY:-}" ]]; then
+      write_env_from_env_var
+    else
+      echo "    ${MCP_ENV} exists but has no GEMINI line; set Codespace secret GEMINI_API_KEY and re-run this script"
+    fi
+  fi
+elif [[ -f "${REPO_ROOT}/.env" ]] && grep -qE '^[[:space:]]*GEMINI_API_KEY[[:space:]]*=' "${REPO_ROOT}/.env" 2>/dev/null; then
+  umask 077
+  cp "${REPO_ROOT}/.env" "${REPO_ROOT}/${MCP_ENV}"
+  echo "    copied repo-root .env -> ${MCP_ENV} (untracked)"
+elif [[ -n "${GEMINI_API_KEY:-}" ]]; then
+  write_env_from_env_var
 else
-  echo "    GEMINI_API_KEY not set. Add it as a Codespaces secret, then re-run this script."
+  echo "    no key yet. Add a [Codespaces secret] GEMINI_API_KEY for this repo, or create a local, gitignored ${MCP_ENV}. See docs/codespaces.md and README."
 fi
 
 echo "==> [2/5] Pulling Kali Linux rolling container"
-# Use Docker-in-Docker so we can sandbox Kali tooling away from the Codespace host.
 docker pull kalilinux/kali-rolling:latest || {
-  echo "    (docker pull failed — you may need to wait for dockerd to come up; re-run 'docker pull kalilinux/kali-rolling:latest' later)"
+  echo "    (docker pull failed — re-run: docker pull kalilinux/kali-rolling:latest)"
 }
 
 echo "==> [3/5] Creating persistent 'kali' container"
 if ! docker ps -a --format '{{.Names}}' | grep -q '^kali$'; then
   docker run -d --name kali \
     --restart unless-stopped \
-    -v "${PWD}":/workspaces/anubis \
+    -v "${REPO_ROOT}":/workspaces/anubis \
     -w /workspaces/anubis \
     kalilinux/kali-rolling:latest \
     sleep infinity || true
@@ -34,7 +61,6 @@ echo "==> [4/5] Provisioning Kali with a baseline toolkit"
 docker exec kali bash -lc '
   set -e
   apt-get update -y
-  # kali-linux-headless is huge; default to a lighter baseline the user can expand.
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     nmap \
     netcat-traditional \
@@ -48,29 +74,28 @@ docker exec kali bash -lc '
     iproute2 \
     iputils-ping \
     ca-certificates
-' || echo "    (apt provisioning failed; re-run manually once docker is ready)"
+' || echo "    (apt provisioning failed; re-run when docker is ready)"
 
-echo "==> [5/5] Installing shell helpers"
+echo "==> [5/5] Shell helpers in ~/.bashrc (no .env source — avoids exporting GEMINI to every shell)"
 BASHRC="${HOME}/.bashrc"
 if ! grep -q "# kali-ai-helpers" "$BASHRC" 2>/dev/null; then
-  cat >> "$BASHRC" <<'EOF'
+  cat >> "$BASHRC" <<EOF
 
 # kali-ai-helpers ---------------------------------------------------------
 alias kali='docker exec -it kali bash'
 alias kali-root='docker exec -it -u 0 kali bash'
-alias anubis-build='(cd /workspaces/anubis/nethunter-gemini-mcp && ./gradlew :app:assembleDebug)'
-alias anubis-test='(cd /workspaces/anubis/nethunter-gemini-mcp && ./gradlew :app:testDebugUnitTest)'
-alias anubis-evals='(cd /workspaces/anubis/nethunter-gemini-mcp && bash scripts/run-evals.sh)'
+alias anubis-build='(cd ${REPO_ROOT}/nethunter-gemini-mcp && ./gradlew :app:assembleDebug)'
+alias anubis-test='(cd ${REPO_ROOT}/nethunter-gemini-mcp && ./gradlew :app:testDebugUnitTest)'
+alias anubis-evals='(cd ${REPO_ROOT}/nethunter-gemini-mcp && bash scripts/run-evals.sh)'
 
 echo ""
-echo "  Kali AI / Anubis Codespace ready."
+echo "  Kali AI / Anubis Codespace ready. Gemini key: gitignored ${MCP_ENV} or Codespaces secret; never commit."
 echo "    anubis-build   build the Android APK"
-echo "    anubis-test    run unit tests"
-echo "    anubis-evals   run the Gemini eval harness"
-echo "    kali           drop into the Kali Linux container"
+echo "    anubis-test   unit tests (use GEMINI in CI via gh secret, not in Pages)"
+echo "    kali           drop into the Kali container"
 echo ""
 # ------------------------------------------------------------------------
 EOF
 fi
 
-echo "Done. Open a new terminal to pick up aliases."
+echo "Done. Open a new shell for aliases."

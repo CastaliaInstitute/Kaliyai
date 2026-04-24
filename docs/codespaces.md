@@ -28,8 +28,9 @@ The repo is configured so a single click launches a full build environment in th
 ```bash
 # 1. Build the Android APK
 cd nethunter-gemini-mcp
+# Prefer a [Codespace secret] GEMINI_API_KEY so the key is never in git.
+# postCreate writes a gitignored .env for Gradle; do not commit it.
 cp .env.example .env
-nano .env                      # paste your GEMINI_API_KEY
 ./gradlew :app:assembleDebug
 
 # 2. Enter Kali
@@ -45,7 +46,8 @@ cd /workspaces/anubis/nethunter-gemini-mcp
 
 ## Secrets
 
-Set `GEMINI_API_KEY` as a [Codespaces secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces) scoped to `CastaliaInstitute/anubis`. The devcontainer exports it into the shell and the Gradle build.
+- **Repository / Actions** — [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets): set `GEMINI_API_KEY` with `gh secret set` (or the repo **Settings → Secrets and variables → Actions**). The static site in `docs/` never uses this; only workflows or manual automation you add should reference `secrets.GEMINI_API_KEY`.
+- **Codespaces** — [Codespaces settings](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces) for `CastaliaInstitute/anubis`: add `GEMINI_API_KEY`. It is only written into a local, **gitignored** `nethunter-gemini-mcp/.env` for Gradle. It is **not** `source`d into the shell, so the key is not in every process environment and never appears on Pages.
 
 ## Customising
 

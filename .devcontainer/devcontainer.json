@@ -29,7 +29,6 @@
   },
   "postCreateCommand": "bash .devcontainer/postCreate.sh",
   "remoteEnv": {
-    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
     "ANDROID_HOME": "/usr/local/lib/android/sdk",
     "ANDROID_SDK_ROOT": "/usr/local/lib/android/sdk"
   },
@@ -50,7 +49,7 @@
   "portsAttributes": {},
   "secrets": {
     "GEMINI_API_KEY": {
-      "description": "Google Gemini API key used by Anubis at build time and runtime.",
+      "description": "Google Gemini API for Anubis. Add in GitHub → CastaliaInstitute/anubis → Settings → Codespaces. Never commit; nethunter-gemini-mcp/.env is gitignored.",
       "documentationUrl": "https://aistudio.google.com/apikey"
     }
   }

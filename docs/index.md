@@ -47,7 +47,7 @@ title: Kali AI — Anubis
 - Package: `com.kali.nethunter.mcpchat`
 - Min SDK 26, target SDK 35, Kotlin 2.0, Compose BoM 2024.10
 - Gradle: `./gradlew :app:assembleDebug`
-- API key: set `GEMINI_API_KEY` in the repo-root `.env` (baked into `BuildConfig.BAKED_GEMINI_API_KEY`)
+- API key: **not** in git or on this site. Use a gitignored `nethunter-gemini-mcp/.env` for local builds, or a [GitHub secret / Codespaces secret](https://anubis.castalia.institute/codespaces.html) `GEMINI_API_KEY` (see README). Baked as `BuildConfig.BAKED_GEMINI_API_KEY` only on your machine or CI, never in Pages
 - Source: [`nethunter-gemini-mcp/`](https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-gemini-mcp)
 
 ### NetHunter prep (host-side)
@@ -99,6 +99,7 @@ See the [Codespaces guide](./codespaces.html) for details.
 
 ## Links
 
+- This site: <https://anubis.castalia.institute/> (custom domain, Cloudflare → GitHub Pages; see [DOMAIN](DOMAIN.html))
 - GitHub: <https://github.com/CastaliaInstitute/anubis>
 - Castalia Institute: <https://github.com/CastaliaInstitute>
 - Kali NetHunter: <https://www.kali.org/docs/nethunter/>

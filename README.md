@@ -2,7 +2,7 @@
 
 **Anubis** is the on-device AI companion for **Kali NetHunter** — an Android app that drives Kali's pen-testing toolchain through Google Gemini over an MCP (Model Context Protocol) bridge.
 
-Part of the [Kali AI](https://castaliainstitute.github.io/anubis/) project by the [Castalia Institute](https://github.com/CastaliaInstitute).
+Part of the [Kali AI](https://anubis.castalia.institute/) project by the [Castalia Institute](https://github.com/CastaliaInstitute). The public site is served on **anubis.castalia.institute** (Cloudflare in front of GitHub Pages; DNS details in [docs/DOMAIN.md](./docs/DOMAIN.md)).
 
 ```
 ┌───────────────────┐     Gemini     ┌──────────────────┐   adb / exec   ┌──────────────────┐
@@ -23,9 +23,18 @@ Part of the [Kali AI](https://castaliainstitute.github.io/anubis/) project by th
 ## Quick start
 
 ### Build the Android app
+Never commit a Gemini key. For **local** work, use a gitignored `nethunter-gemini-mcp/.env` (see `.env.example`). For **CI**, store the key only in GitHub:
+
+```bash
+gh secret set GEMINI_API_KEY --repo CastaliaInstitute/anubis
+# paste the key at the prompt, or: gh secret set GEMINI_API_KEY -b"$KEY" --repo CastaliaInstitute/anubis
+```
+
+**Codespaces:** add the same name under **Settings → Secrets and variables → Codespaces** for this repo. `postCreate` writes it into a local, untracked `nethunter-gemini-mcp/.env` for Gradle; it is not exported to the shell and not on GitHub Pages.
+
 ```bash
 cd nethunter-gemini-mcp
-cp .env.example .env   # add your GEMINI_API_KEY
+cp .env.example .env   # local only; fill for device builds
 ./gradlew :app:assembleDebug
 ```
 
@@ -37,7 +46,7 @@ cd nethunter-prep
 ```
 
 ### Open in Codespaces
-Click the "Open in GitHub Codespaces" button on the [project page](https://castaliainstitute.github.io/anubis/) or:
+Click the "Open in GitHub Codespaces" button on the [project page](https://anubis.castalia.institute/) or:
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/CastaliaInstitute/anubis?quickstart=1)
 
 ## Licensing
