@@ -1,0 +1,57 @@
+{
+  "name": "Kali AI — Anubis",
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": false,
+      "username": "vscode"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installGradle": true
+    },
+    "ghcr.io/devcontainers/features/android-sdk:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  },
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "remoteEnv": {
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "ANDROID_HOME": "/usr/local/lib/android/sdk",
+    "ANDROID_SDK_ROOT": "/usr/local/lib/android/sdk"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "fwcd.kotlin",
+        "mathiasfrohlich.Kotlin",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions",
+        "google.geminicodeassist"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "portsAttributes": {},
+  "secrets": {
+    "GEMINI_API_KEY": {
+      "description": "Google Gemini API key used by Anubis at build time and runtime.",
+      "documentationUrl": "https://aistudio.google.com/apikey"
+    }
+  }
+}

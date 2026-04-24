@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "description": "Anubis: built-in MCP, intent examples, and optional live Gemini e2e (set ANUBIS_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
+  "builtin": [
+    {
+      "id": "echo_basic",
+      "tool": "echo",
+      "args": { "message": "anubis_eval" },
+      "textContains": ["echo: anubis_eval"],
+      "textNotContains": ["error", "isError"]
+    },
+    {
+      "id": "device_info_shows_android",
+      "tool": "device_info",
+      "args": {},
+      "textContains": ["manufacturer=", "androidSdk="],
+      "textNotContains": []
+    },
+    {
+      "id": "wifi_scan_no_location_permission",
+      "tool": "wifi_scan",
+      "args": {},
+      "textContains": ["not allowed", "Location"],
+      "textNotContains": []
+    },
+    {
+      "id": "kali_nethunter_info",
+      "tool": "kali_nethunter_info",
+      "args": {},
+      "textContains": ["kali_nethunter_info", "toolCatalogSize="],
+      "textNotContains": []
+    },
+    {
+      "id": "kali_nethunter_list_includes_nmap",
+      "tool": "kali_nethunter_list_tools",
+      "args": {},
+      "textContains": ["kali_nethunter_list_tools", "nmap"],
+      "textNotContains": []
+    },
+    {
+      "id": "kali_nethunter_exec_interactive_blocked",
+      "tool": "kali_nethunter_exec",
+      "args": { "command": "msfconsole -h" },
+      "textContains": ["non-interactive", "TUI", "kali_nethunter_exec:"],
+      "kaliExecEnabled": true,
+      "expectIsError": true
+    },
+    {
+      "id": "kali_nethunter_exec_disabled",
+      "tool": "kali_nethunter_exec",
+      "args": { "command": "nmap -h" },
+      "textContains": ["disabled in Settings", "kali_nethunter_exec:"],
+      "kaliExecEnabled": false,
+      "expectIsError": true
+    }
+  ],
+  "promptE2E": [
+    {
+      "id": "e2e_wifi_nearby",
+      "message": "What Wi-Fi networks are visible on this device? List SSIDs and signal if you can.",
+      "anyToolIn": ["wifi_scan"],
+      "summaryContainsAny": ["wifi", "network", "location", "permission", "scan"]
+    },
+    {
+      "id": "e2e_kali_tool_catalog",
+      "message": "List some Kali tools you have in your catalog, just a few example names from the in-app list.",
+      "anyToolIn": ["kali_nethunter_list_tools", "kali_nethunter_info", "kali_nethunter_exec"],
+      "summaryContainsAny": ["kali", "nmap", "tool", "catalog", "list"]
+    },
+    {
+      "id": "e2e_ech_smoke",
+      "message": "Call echo with message \"eval_ok\" to verify tool wiring works.",
+      "anyToolIn": ["echo"]
+    }
+  ],
+  "routing": [
+    {
+      "id": "wifi_keywords_suggest_scan",
+      "userMessage": "Run a quick Wi-Fi scan and list nearby access points (SSID, dBm).",
+      "suggestedTool": "wifi_scan"
+    },
+    {
+      "id": "kali_info_keywords",
+      "userMessage": "Is the NetHunter chroot and su available on this device?",
+      "suggestedTool": "kali_nethunter_info"
+    },
+    {
+      "id": "nmap_example_noninteractive",
+      "userMessage": "In the chroot, show the help for nmap in one line (version or -h), non-interactive only.",
+      "suggestedTool": "kali_nethunter_exec"
+    }
+  ]
+}

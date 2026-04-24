@@ -1,0 +1,38 @@
+# OS / editor
+.DS_Store
+.idea/
+*.iml
+.vscode/
+
+# Gradle / Android
+.gradle/
+.kotlin/
+build/
+*/build/
+local.properties
+
+# Secrets
+.env
+*.keystore
+*.jks
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Large prep artifacts (ROMs, rootfs, installers) — keep scripts/docs only
+nethunter-prep/*.zip
+nethunter-prep/*.img
+nethunter-prep/*.apk
+nethunter-prep/*.tar
+nethunter-prep/*.tar.xz
+nethunter-prep/*.tar.gz
+nethunter-prep/SHA256SUMS
+nethunter-prep/neth-extract/
+nethunter-prep/openvas/
+
+# Logs / temp
+*.log
+tmp/

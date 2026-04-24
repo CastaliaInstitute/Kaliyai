@@ -1,0 +1,16 @@
+title: Kali AI
+description: >-
+  On-device AI for Kali NetHunter. An Android companion app (Anubis) that drives
+  Kali's pen-testing toolchain through Google Gemini over the Model Context
+  Protocol.
+url: https://castaliainstitute.github.io
+baseurl: /anubis
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - README.md

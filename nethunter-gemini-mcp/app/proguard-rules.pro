@@ -1,0 +1,4 @@
+-keepattributes *Annotation*,Signature,InnerClasses,EnclosingMethod
+-keepclassmembers class **$$serializer { *; }
+-keep class kotlinx.serialization.json.** { *; }
+-keep class com.kali.nethunter.mcpchat.BuildConfig { *; }
