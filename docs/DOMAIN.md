@@ -5,6 +5,8 @@ title: anubis.castalia.institute — DNS & Cloudflare
 
 # Custom domain: anubis.castalia.institute
 
+*Operator note: this is about **hosting the static `docs/` site** (DNS, TLS, GitHub Pages). For the **Kali AI software stack** (Anubis, Kali, GVM, etc.), start at the [home page](index.html).*
+
 The public [Kali AI / Anubis](index.html) site is published with **GitHub Pages** and uses the hostname **anubis.castalia.institute** with **Cloudflare** in front. Nothing in the Pages build or `docs/` reads or contains API keys; Gemini keys are only in [GitHub secrets / Codespace secrets](codespaces.html) and local, gitignored `.env` files.
 
 ## GitHub

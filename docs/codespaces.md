@@ -1,29 +1,30 @@
 ---
 layout: castalia
-title: Running Kali AI in GitHub Codespaces
+title: Development environment (Codespaces & devcontainer)
 ---
 
-# Running Kali AI in Codespaces
+# What this dev environment is
 
-The repo is configured so a single click launches a full build environment in the cloud: Kali Linux userland, Android SDK + command-line tools, JDK 17, and the Anubis source tree.
+The repository includes a <a href="https://containers.dev/">Development Container (devcontainer)</a> — a <strong>declarative, reproducible</strong> description of the OS and packages needed to (1) <strong>compile the Android app</strong>, and (2) <strong>run a Kali userland in parallel</strong> for command-line work. It is the same <em>technologies</em> you would install by hand; they are precomposed so a student or CI job gets a <strong>known-good toolchain</strong> without baking huge images into git.
+
+[GitHub Codespaces](https://github.com/features/codespaces) is one host for that spec: a managed container with VS Code in the browser, backed by Microsoft’s build grid. The **anubis** spec can also be opened locally in **Dev Containers** with Docker on your own machine. Nothing here replaces the on-phone stack; it is a <strong>developer mirror</strong> of it.
+
+## How the spec is built (devcontainer + images)
+
+| Technology role | In the OCI / feature stack | What it is for |
+|-----------------|----------------------------|----------------|
+| LTS userland for tooling | <code>mcr.microsoft.com/devcontainers/base:jammy</code> | A predictable Ubuntu with security updates for all native packages. |
+| Android compile toolchain | <code>ghcr.io/devcontainers/features/java:1</code> + Gradle wrapper in repo | JVM 17, matching the app’s <code>compileSdk</code> / <code>target</code> choices. |
+| <code>sdkmanager</code>, ADB, build-tools | <code>ghcr.io/devcontainers/features/android-sdk:1</code> | Headless <code>assembleDebug</code> / <code>assembleRelease</code> and logcat. |
+| Nested OCI (sidecar Kali) | <code>ghcr.io/devcontainers/features/docker-in-docker:2</code> | Lets the same spec run a Kali container whose packages align with the NetHunter chroot. |
+| Rolling Kali CLI | <code>kalilinux/kali-rolling</code> (via <code>postCreate.sh</code>) | Quick <code>apt</code> installs for lab exercises, not a replacement for a rooted chroot. |
+| Local secret wiring | <code>.devcontainer/postCreate.sh</code> (gitignored <code>.env</code> only) | Binds the Gemini key into Gradle; never in Pages or committed trees. |
 
 <p>
-  <a class="btn btn-primary" href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1">
-    🚀 Open in Codespaces
-  </a>
+  <a class="btn btn-primary" href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1">Open the repo in GitHub Codespaces</a>
 </p>
 
-## What you get
-
-| Layer | Provided by |
-|-------|-------------|
-| Ubuntu 22.04 base | `mcr.microsoft.com/devcontainers/base:jammy` |
-| JDK 17 + Gradle | `ghcr.io/devcontainers/features/java:1` |
-| Android SDK 35 + cmdline-tools + platform-tools | `ghcr.io/devcontainers/features/android-sdk:1` |
-| Docker-in-Docker | `ghcr.io/devcontainers/features/docker-in-docker:2` |
-| Kali Linux rolling (as a container) | `kalilinux/kali-rolling` + `postCreate.sh` |
-
-## Typical workflow
+## One way to work with it
 
 ```bash
 # 1. Build the Android APK

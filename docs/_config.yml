@@ -1,8 +1,8 @@
 title: Kali AI
 description: >-
-  On-device AI for Kali NetHunter. An Android companion app (Anubis) that drives
-  Kali's pen-testing toolchain through Google Gemini over the Model Context
-  Protocol.
+  An Android app (Kotlin, Compose) using Google Gemini, MCP, and a Kali NetHunter
+  chroot — plus Greenbone GVM in teaching labs. This site explains the
+  technology stack; the repo holds build and automation details.
 url: https://anubis.castalia.institute
 baseurl: ""
 theme: jekyll-theme-cayman

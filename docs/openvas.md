@@ -1,21 +1,25 @@
 ---
 layout: castalia
-title: OpenVAS / GVM on NetHunter
+title: Greenbone GVM & NetHunter (Lab)
 ---
 
-# OpenVAS / GVM implementation
+# GVM, OpenVAS lineage, and the NetHunter chroot
 
-[Greenbone Vulnerability Manager](https://www.greenbone.net/) (GVM) is the maintained stack behind what people still call **OpenVAS**: network and host scanning with a large NVT feed, **GSA** (web UI on port **9392**), and **GMP** (API on **9390**) for automation.
+## The technology: what “GVM / OpenVAS” means today
 
-In this project, GVM is **not** shipped as an Android app. It is a **multi-daemon Linux service** we install with `apt` **inside the Kali NetHunter chroot** on a rooted device, with a **Mac-side orchestrator** that talks over `adb` so you can script install, start/stop, and port forwards from your laptop.
+[Greenbone Vulnerability Manager (GVM)](https://www.greenbone.net/) is the **actively maintained** stack. **OpenVAS** is the historical name of the project’s scanner; today’s product line still speaks of **GVM** as the orchestration layer, **GSA** as the web front-end, **GMP** as the XML/RPC management API, and a rolling feed of **Network Vulnerability Tests (NVTs)**. Underneath you expect **PostgreSQL** (or another supported RDBMS), a **manager** (`gvmd`) process, and **OSPd**-style services that run the actual NVTs against targets. That is the same <strong>vulnerability management architecture</strong> you would read about in enterprise exposure-management literature — just compressed into a form factor we can point at a teaching lab.
 
-**Source in the repo:** [`nethunter-prep/openvas/`](https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-prep/openvas) (see the README there for the full command reference and file layout).
+## How this project touches it
+
+GVM is **not** a Play Store app. In our setup it appears as a **conventional multi-user Linux service set** (many daemons, ordering constraints, a database bootstrap) that can, in principle, be installed with `apt` **inside a full Kali userland** — the same chroot that NetHunter already mounts. **ADB** and a **host** machine only enter the story because a phone is easier to access over USB than over SSH, and because the lab’s Mac or Linux box is a convenient place to script lifecycle and to hold larger disk images. The <strong>core technical content</strong> is still “what GVM is,” not the cable.
+
+**Code and scripts (install / automation):** [`nethunter-prep/openvas/`](https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-prep/openvas) — the README is the source of truth for file layout and subcommands.
 
 ---
 
-## Two deployment paths
+## Lab patterns (where the daemons run)
 
-### Path 1 — GVM in Docker on the Mac (works on the OnePlus One + LOS 18.1)
+### Pattern A — Engine on a host, console on the phone (e.g. OnePlus One with LOS 18.1)
 
 The stock LineageOS 18.1 `bacon` kernel is built **without** `CONFIG_SYSVIPC` and **without** `CONFIG_SWAP`. PostgreSQL’s `initdb` path uses System V shared memory; without it, the database cannot bootstrap, and **GVM cannot run** on the phone. There is also no swapon / zram for a 3 GB device, so a full on-device GVM would OOM during feed load anyway.
 
@@ -23,7 +27,7 @@ The stock LineageOS 18.1 `bacon` kernel is built **without** `CONFIG_SYSVIPC` an
 
 Admin passwords and similar files live under **`.secrets/`** on the Mac — that directory is **gitignored**; never commit credentials.
 
-### Path 2 — On-device GVM in the chroot (other hardware)
+### Pattern B — Full GVM in the chroot (hardware-dependent)
 
 `deploy.sh` and the scripts under `chroot/` implement a full **on-device** install: optional **4 GB swapfile** on `/data`, staged install and `gvm-setup`, manual service order (no `systemd` in the chroot), `adb forward` to reach GSA from the host browser.
 
@@ -31,7 +35,7 @@ This path is **only realistic** on devices whose kernels expose **SysV IPC** and
 
 ---
 
-## What the automation does
+## How the reference automation maps to components
 
 | Piece | Role |
 |-------|------|
