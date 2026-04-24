@@ -11,7 +11,7 @@ The public [Kali AI / Anubis](index.html) site is published with **GitHub Pages*
 
 - Repository: [CastaliaInstitute/anubis](https://github.com/CastaliaInstitute/anubis)
 - The repo includes `docs/CNAME` with `anubis.castalia.institute` so the Pages artifact advertises the hostname.
-- **Settings → Pages** — in `CastaliaInstitute/anubis` add **Custom domain** `anubis.castalia.institute`, save, then **Enforce HTTPS** once Cloudflare and GitHub show the domain as valid. (A repo with admin rights may be required; the Pages REST `PATCH` call returns 404 if your token is not an org admin.)
+- **Settings → Pages** — or use **`gh`**: [`./scripts/gh-pages-custom-domain.sh`](https://github.com/CastaliaInstitute/anubis/blob/main/scripts/gh-pages-custom-domain.sh) (sets the custom domain via `PUT /repos/.../pages` with `build_type: workflow`). If the API says **"The certificate does not exist yet"**, set **CNAME in Cloudflare first**, wait for GitHub’s DNS check, then **Enforce HTTPS** in the UI, or re-run the API with `"https_enforced": true` (see script comments). Do not bundle `https_enforced` and other fields in the *first* request before a cert can be issued. Repo **admin** is required for the API.
 
 ## Monorepo index (castalia.institute)
 
