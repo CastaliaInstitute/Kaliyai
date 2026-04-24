@@ -1,0 +1,374 @@
+/* Kali AI landing — complements jekyll-theme-cayman; scoped to .kali-landing + header tune */
+
+body .page-header {
+  background: linear-gradient(165deg, #071209 0%, #0c1a11 40%, #071209 100%);
+  border-bottom: 1px solid rgba(0, 230, 118, 0.12);
+  padding: 0.9rem 1.5rem 1.1rem;
+}
+
+body .page-header .project-name,
+body .page-header .project-name a {
+  color: #e8fff0 !important;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+body .page-header .project-tagline,
+body .page-header .project-tagline a {
+  color: #8ecf9f !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.kali-landing {
+  --kali-surface: #0a140f;
+  --kali-raised: #0f1f16;
+  --kali-border: rgba(0, 230, 118, 0.16);
+  --kali-mint: #4ade80;
+  --kali-ink: #0d0f0d;
+  --kali-mist: #b8d9c2;
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #c8e6d0;
+  margin: -0.5rem 0 0;
+}
+
+.kali-landing h2,
+.kali-landing h3,
+.kali-landing h4 {
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #e8f8ec;
+  font-weight: 600;
+}
+
+.kali-landing a {
+  color: var(--kali-mint);
+  text-decoration-color: rgba(74, 222, 128, 0.4);
+}
+.kali-landing a:hover {
+  color: #6ee7a0;
+}
+
+/* —— Hero —— */
+.kali-hero {
+  position: relative;
+  padding: 2.25rem 1.25rem 2.75rem;
+  background: var(--kali-ink);
+  overflow: hidden;
+  border-bottom: 1px solid var(--kali-border);
+}
+
+.kali-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% -20%, rgba(0, 180, 100, 0.28), transparent 55%),
+    radial-gradient(ellipse 50% 50% at 10% 100%, rgba(30, 120, 80, 0.2), transparent 50%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 255, 150, 0.03) 0,
+      rgba(0, 255, 150, 0.03) 1px,
+      transparent 1px,
+      transparent 32px
+    );
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.kali-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.kali-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #6b9a78;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.kali-hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.25rem, 6.5vw, 3.35rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, #e8fff0 0%, #4ade80 45%, #22c55e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 40px rgba(34, 197, 94, 0.2));
+}
+
+.kali-title-ai {
+  font-style: normal;
+  font-weight: 800;
+}
+
+.kali-hero .kali-deck {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--kali-mist);
+  max-width: 46rem;
+  margin: 0 0 1.5rem;
+}
+
+.kali-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.9rem;
+  align-items: center;
+}
+
+/* Cayman buttons, enhanced on landing */
+.kali-hero .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.55em 1.1em;
+  font-family: "DM Sans", sans-serif;
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+.kali-hero .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, 0.4), 0 12px 32px rgba(0, 60, 30, 0.4);
+  filter: brightness(1.05);
+}
+
+.kali-hero .btn-primary {
+  background: linear-gradient(180deg, #16a34a, #15803d);
+  border: none;
+}
+
+/* —— Pillars —— */
+.kali-pillars {
+  padding: 2rem 1rem 2.25rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.kali-pillars h2 {
+  text-align: center;
+  margin: 0 0 1.4rem;
+  font-size: 1.4rem;
+}
+
+.kali-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 800px) {
+  .kali-pillar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kali-card {
+  background: linear-gradient(180deg, var(--kali-raised), var(--kali-surface));
+  border: 1px solid var(--kali-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.1rem 1.35rem;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.kali-card:hover {
+  border-color: rgba(0, 230, 118, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.kali-card-icon {
+  display: block;
+  margin: 0 0 0.9rem;
+  color: #4ade80;
+}
+
+.kali-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.kali-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #9ebfa8;
+}
+
+/* —— Diagram —— */
+.kali-arch {
+  background: #060a08;
+  border: 1px solid var(--kali-border);
+  border-radius: 20px;
+  padding: 1.25rem 0.5rem 1.5rem;
+  margin: 0 auto 2.25rem;
+  max-width: 900px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.kali-arch h2,
+.kali-rest h2 {
+  text-align: center;
+  margin: 0 0 0.2rem;
+  font-size: 1.4rem;
+}
+
+.kali-sub {
+  text-align: center;
+  color: #6b8f76;
+  font-size: 0.88rem;
+  margin: 0 0 1rem;
+}
+
+.kali-rest {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+}
+
+.kali-rest p,
+.kali-rest li {
+  color: #a8c9b0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Components section */
+.kali-components {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem 2.2rem;
+}
+.kali-components h2 {
+  margin-top: 0;
+}
+p.kali-landing-p {
+  color: #a8c9b0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0.5rem 0 0.65rem;
+}
+p.kali-landing-p + h3,
+p.kali-landing-p + table {
+  margin-top: 0.75rem;
+}
+
+.kali-comp-block {
+  margin-bottom: 1.6rem;
+}
+.kali-comp-block h3 {
+  margin: 0 0 0.4rem;
+  color: #d4f0dc;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.kali-components table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 0.4rem 0 0.8rem;
+}
+.kali-components th,
+.kali-components td {
+  border: 1px solid rgba(0, 120, 60, 0.2);
+  padding: 0.4rem 0.55rem;
+  text-align: left;
+  color: #a0c0a8;
+}
+.kali-components th {
+  background: rgba(0, 50, 25, 0.3);
+  color: #c8e8d0;
+}
+
+/* Cloud strip */
+.kali-cloud {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  padding: 1.35rem 1.25rem;
+  background: linear-gradient(90deg, rgba(20, 60, 100, 0.25), rgba(10, 30, 50, 0.2));
+  border: 1px solid rgba(80, 150, 220, 0.2);
+  border-radius: 16px;
+}
+.kali-cloud p {
+  margin: 0 0 0.5rem;
+  color: #b0cfdb;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.kali-cloud a img {
+  vertical-align: middle;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* Status: chips */
+.kali-status-wrap h2 {
+  text-align: center;
+}
+ul.kali-chips,
+.kali-chips {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.45rem;
+  justify-content: center;
+}
+ul.kali-chips li,
+.kali-chips li {
+  font-size: 0.8rem;
+  color: #b0dec0;
+  background: var(--kali-raised);
+  border: 1px solid var(--kali-border);
+  border-radius: 999px;
+  padding: 0.35em 0.7em 0.35em 0.65em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Code */
+.kali-landing pre,
+.kali-landing code {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+.kali-landing .highlight {
+  background: #050807 !important;
+  border-radius: 12px;
+  border: 1px solid var(--kali-border);
+  margin: 0.4rem 0 0.8rem;
+}
+.kali-landing pre {
+  color: #a8d4b4 !important;
+}
+
+/* Links list footer */
+.kali-landing h2#links {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--kali-border);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .kali-hero .btn,
+  .kali-card {
+    transition: none;
+  }
+  .kali-hero .btn:hover,
+  .kali-card:hover {
+    transform: none;
+  }
+}
