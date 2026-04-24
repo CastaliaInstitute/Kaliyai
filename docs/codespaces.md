@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: castalia
 title: Running Kali AI in GitHub Codespaces
 ---
 

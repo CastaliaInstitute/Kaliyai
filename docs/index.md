@@ -8,8 +8,15 @@ title: Kali AI — Anubis
   <div class="kali-hero-inner">
     <p class="kali-eyebrow">Castalia Institute · NetHunter · Gemini · MCP</p>
     <h1>Kali <span class="kali-title-ai">AI</span></h1>
-    <p class="kali-deck">Natural language meets real offensive tooling. An <strong>Android</strong> brain (<strong>Anubis</strong>) calls <strong>Google Gemini</strong> and drives your <strong>Kali NetHunter</strong> chroot over the <strong>Model Context Protocol</strong> — nmap, Metasploit, radio tools, and your own scripts, orchestrated from chat.</p>
-    <p class="kali-deck" style="margin-top:0.4rem; font-size:0.95rem; color:#8faa96;">Plus <strong>OpenVAS / GVM</strong> lab automation: <code>adb</code> orchestration, on-device and Docker-on-Mac paths — see below.</p>
+    <p class="kali-hero-subline">On-device control plane for real pen-test tooling</p>
+    <p class="kali-deck">Natural language meets <strong>real</strong> offensive tooling. <strong>Anubis</strong> (Android) talks to <strong>Google Gemini</strong>, runs a built-in <strong>MCP</strong> engine, and drives your <strong>Kali NetHunter</strong> chroot — nmap, Metasploit, radio, scanners, and <em>your</em> shell scripts — orchestrated from a chat UI, not a web toy.</p>
+    <p class="kali-deck-note">Lab paths also cover <strong>OpenVAS / GVM</strong>: <code>adb</code> orchestration, on-device and Docker-on-Mac when the phone kernel can’t run PostgreSQL — <a href="#gvm-lab">details below</a>.</p>
+    <div class="kali-hero-stats" role="list">
+      <div class="kali-hero-stat" role="listitem"><span class="kali-hero-stat-label">MCP</span> Tool catalog in-process</div>
+      <div class="kali-hero-stat" role="listitem"><span class="kali-hero-stat-label">Kali</span> 2026 chroot + NetHunter</div>
+      <div class="kali-hero-stat" role="listitem"><span class="kali-hero-stat-label">AINS</span> 6300–6302 track</div>
+    </div>
+    <p class="kali-hero-motto">The model <em>plans</em> and <em>routes intent</em>; the device and chroot <em>execute</em> — a clean split for teaching and for ops.</p>
     <div class="kali-hero-cta">
       <a class="btn btn-primary" href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1">Open in GitHub Codespaces</a>
       <a class="btn" href="https://github.com/CastaliaInstitute/anubis">Source on GitHub</a>
@@ -18,6 +25,7 @@ title: Kali AI — Anubis
 </section>
 
 <section class="kali-pillars" id="three-pillars" aria-label="What makes up Kali AI">
+  <p class="kali-section-kicker">Core stack</p>
   <h2>Three pillars</h2>
   <div class="kali-pillar-grid">
     <article class="kali-card">
@@ -59,9 +67,10 @@ title: Kali AI — Anubis
 </section>
 
 <section class="kali-arch" id="flow" aria-label="Architecture diagram">
+  <p class="kali-section-kicker">Data flow</p>
   <h2>How it fits together</h2>
-  <p class="kali-sub">Gemini never runs exploits in the cloud — the model <em>plans</em>; the phone and chroot <em>execute</em>.</p>
-  <svg class="kali-flow-svg" viewBox="0 0 800 200" width="100%" style="max-height: 220px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow: Anubis to Gemini, MCP, then Kali chroot">
+  <p class="kali-sub">Gemini never runs exploits in the cloud — the model <em>plans</em>; the phone and chroot <em>execute</em>. That split is the security story: cloud stays dumb; edge stays accountable.</p>
+  <svg class="kali-flow-svg" viewBox="0 0 800 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow: Anubis to Gemini, MCP, then Kali chroot">
     <defs>
       <linearGradient id="gbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#163024"/><stop offset="100%" stop-color="#0a150f"/></linearGradient>
       <filter id="gs"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/></filter>
@@ -109,10 +118,12 @@ title: Kali AI — Anubis
 </section>
 
 <div class="kali-components">
+  <p class="kali-kicker">Reality check</p>
   <h2 id="at-a-glance">At a glance</h2>
-  <p class="kali-landing-p"><strong>Anubis</strong> — <code>com.kali.nethunter.mcpchat</code>, Kotlin 2 / Compose, <a href="https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-gemini-mcp">source</a>.</p>
+  <p class="kali-landing-p"><strong>Anubis</strong> — <code>com.kali.nethunter.mcpchat</code>, Kotlin 2 / Compose, <a href="https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-gemini-mcp">source</a>. Eval harness in-repo for function-calling behavior.</p>
   <p class="kali-landing-p"><strong>API keys</strong> are <strong>not</strong> on this site. Use a gitignored <code>.env</code> or <a href="{{ '/codespaces.html' | relative_url }}">GitHub / Codespaces secrets</a> for <code>GEMINI_API_KEY</code> — never commit keys.</p>
   <h3>NetHunter prep</h3>
+  <div class="kali-table-wrap">
   <table>
     <thead><tr><th>Script</th><th>What it does</th></tr></thead>
     <tbody>
@@ -121,6 +132,7 @@ title: Kali AI — Anubis
       <tr><td><code>adb-debug-intents.sh</code></td><td>ADB <code>am</code> hooks for Anubis dev.</td></tr>
     </tbody>
   </table>
+  </div>
   <p class="kali-landing-p">ROMs and images are <strong>not</strong> in the repo — <a href="https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-prep">nethunter-prep/</a> holds scripts only.</p>
   <h3 id="gvm-lab">OpenVAS / GVM (lab)</h3>
   <p class="kali-landing-p"><strong>deploy.sh</strong>, <strong>chroot/*.sh</strong> — GVM in the chroot, <code>adb forward</code> to GSA. <strong>docker-mac/</strong> — Greenbone in Docker, <code>gvm-cli</code> on device via <code>adb reverse</code> (practical for LOS 18.1 on bacon). <a href="{{ '/openvas.html' | relative_url }}">Full write-up →</a></p>
@@ -128,21 +140,24 @@ title: Kali AI — Anubis
 
 <section class="kali-cloud" aria-label="Codespaces">
   <h2>Run in the cloud</h2>
-  <p>One devcontainer: Ubuntu, JDK 17, <strong>Android SDK</strong>, and a <strong>Kali</strong> sidecar in Docker. Build the APK, drop into a Kali shell, and iterate without flashing hardware.</p>
+  <p>One devcontainer: Ubuntu, JDK 17, <strong>Android SDK</strong>, and a <strong>Kali</strong> sidecar in Docker. Build the APK, drop into a Kali shell, and iterate <strong>without</strong> flashing your bench hardware every night.</p>
   <a href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1"><img src="https://github.com/codespaces/badge.svg" width="200" height="32" alt="Open in GitHub Codespaces" /></a>
-  <p style="font-size:0.88rem; color:#7a9a9a; margin:0.6rem 0 0;">Guide: <a href="{{ '/codespaces.html' | relative_url }}">Running Kali AI in Codespaces</a></p>
-  <div style="max-width: 32rem; margin: 0.9rem 0 0; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,230,118,0.15);">
-  <div style="padding:0.2rem 0.6rem; background:rgba(0,30,20,0.4); color:#5a8a6a; font-size:0.65rem; font-family: 'JetBrains Mono', monospace; letter-spacing:0.04em;">QUICK START (Codespace or local)</div>
-  <pre style="margin:0; padding:0.6rem 0.75rem; background:#050a08; color:#7bb896; font-size:0.78rem; line-height:1.45; overflow:auto;"><code>cd nethunter-gemini-mcp
+  <p class="kali-cloud-mono">Full guide: <a href="{{ '/codespaces.html' | relative_url }}">Running Kali AI in Codespaces</a> (secrets, Docker, and typical workflows)</p>
+  <div class="kali-cloud-terminal" aria-label="Example commands">
+  <div class="kali-cloud-terminal-bar">QUICK START (Codespace or local)</div>
+  <pre><code>cd nethunter-gemini-mcp
 ./gradlew :app:assembleDebug
 # Codespace: kali  →  Kali in Docker</code></pre>
   </div>
 </section>
 </div>
 
-<div class="kali-status-wrap kali-landing" style="max-width: 900px; margin: 0 auto; padding: 0 1rem 2.5rem;" markdown="1">
+<div class="kali-footer-block kali-landing">
+  <p class="kali-lede">The <a href="https://github.com/CastaliaInstitute/anubis#readme">README on GitHub</a> holds the full build matrix, directory map, and contribution notes. This page is the <strong>product and teaching</strong> story — why the stack exists and how the pieces connect.</p>
+  <div class="kali-footer-grid">
+  <div class="kali-footer-col" markdown="1">
 
-## Status
+## Status {#status}
 
 - Anubis — Compose + chat
 - Gemini — function-calling
@@ -153,15 +168,16 @@ title: Kali AI — Anubis
 - **AINS 6300–6302** Jupyter Books
 {: .kali-chips}
 
-*Use the [README on GitHub](https://github.com/CastaliaInstitute/anubis#readme) for a full project matrix; this page highlights the product story.*
+  </div>
+  <div class="kali-footer-col" markdown="1">
 
+## Links {#links}
 
+- [anubis.castalia.institute](https://anubis.castalia.institute/) (this site) · <a href="{{ '/DOMAIN.html' | relative_url }}">DNS &amp; Cloudflare</a>
+- [Pedagogy &amp; AINS-63xx]({{ '/pedagogy.html' | relative_url }})
+- <a href="https://github.com/CastaliaInstitute/anubis">CastaliaInstitute/anubis</a> on GitHub
+- <a href="https://www.kali.org/docs/nethunter/">Kali NetHunter</a> · <a href="https://ai.google.dev/">Gemini</a> · <a href="https://modelcontextprotocol.io/">MCP</a>
 
-## Links
-
-- [This site (custom domain)](https://anubis.castalia.institute/) — [DNS / Cloudflare]({{ '/DOMAIN.html' | relative_url }})
-- [Teaching — AINS-63xx &amp; Cybersecurity MSAI]({{ '/pedagogy.html' | relative_url }})
-- [GitHub · CastaliaInstitute/anubis](https://github.com/CastaliaInstitute/anubis)
-- [Kali NetHunter](https://www.kali.org/docs/nethunter/) · [Gemini](https://ai.google.dev/) · [MCP](https://modelcontextprotocol.io/)
-
+  </div>
+  </div>
 </div>

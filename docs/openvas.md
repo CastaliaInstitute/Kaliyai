@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: castalia
 title: OpenVAS / GVM on NetHunter
 ---
 

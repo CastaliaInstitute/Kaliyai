@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: castalia
 title: Teaching — Cybersecurity specialization (AINS-63xx)
 ---
 

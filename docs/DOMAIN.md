@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: castalia
 title: anubis.castalia.institute — DNS & Cloudflare
 ---
 

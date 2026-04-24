@@ -1,0 +1,268 @@
+/* Castalia inner pages — pairs with jekyll-theme-cayman, matches home.css mood */
+
+html {
+  color-scheme: dark;
+}
+
+body .page-header {
+  background: linear-gradient(165deg, #071209 0%, #0c1a11 40%, #071209 100%);
+  border-bottom: 1px solid rgba(0, 230, 118, 0.12);
+  padding: 0.9rem 1.5rem 1.1rem;
+}
+
+body .page-header .project-name,
+body .page-header .project-name a {
+  color: #e8fff0 !important;
+  font-family: "Outfit", "DM Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+body .page-header .project-tagline,
+body .page-header .project-tagline a {
+  color: #8ecf9f !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+body .main-content,
+body .page-header,
+body .site-footer,
+body .site-nav {
+  color: #c4e0cc;
+}
+
+body .main-content a {
+  color: #4ade80;
+  text-decoration-color: rgba(74, 222, 128, 0.4);
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+body .main-content a:hover {
+  color: #6ee7a0;
+  text-decoration-color: rgba(110, 231, 160, 0.55);
+}
+
+body .main-content a:focus-visible,
+body .btn:focus-visible {
+  outline: 2px solid rgba(34, 197, 94, 0.65);
+  outline-offset: 2px;
+}
+
+/* Wrapper */
+.kali-site-page {
+  font-family: "DM Sans", system-ui, sans-serif;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 3.5rem;
+  color: #b8d9c2;
+  line-height: 1.65;
+}
+
+.kali-site-page h1,
+.kali-site-page h2,
+.kali-site-page h3,
+.kali-site-page h4 {
+  font-family: "Outfit", "DM Sans", system-ui, sans-serif;
+  color: #e8f8ec;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 1.25rem;
+}
+
+.kali-site-page h1 {
+  font-size: clamp(1.75rem, 4vw, 2.1rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  background: linear-gradient(120deg, #e8fff0 0%, #4ade80 50%, #22c55e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kali-site-page h2 {
+  font-size: 1.2rem;
+  margin: 2.25rem 0 0.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(0, 230, 118, 0.14);
+}
+
+.kali-site-page h3 {
+  font-size: 1.05rem;
+  margin: 1.35rem 0 0.45rem;
+  color: #c8e8d0;
+}
+
+.kali-site-page p {
+  margin: 0.5rem 0 0.85rem;
+  font-size: 0.98rem;
+  color: #9eb8a4;
+}
+
+.kali-site-page hr {
+  border: none;
+  height: 1px;
+  margin: 1.5rem 0;
+  background: linear-gradient(90deg, transparent, rgba(0, 230, 118, 0.25), transparent);
+}
+
+.kali-site-page blockquote {
+  border-left: 3px solid rgba(74, 222, 128, 0.4);
+  margin: 0.8rem 0 1.2rem;
+  padding: 0.2rem 0 0.2rem 1rem;
+  color: #9bafa0;
+  font-size: 0.95rem;
+  background: rgba(10, 25, 18, 0.4);
+  border-radius: 0 10px 10px 0;
+}
+
+.kali-site-page strong {
+  color: #d0ecd8;
+  font-weight: 600;
+}
+
+/* Tables */
+.kali-site-page table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  margin: 0.75rem 0 1.1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 100, 55, 0.2);
+}
+
+.kali-site-page thead th {
+  background: linear-gradient(180deg, rgba(15, 45, 30, 0.85), rgba(8, 22, 16, 0.9));
+  color: #a8d4b4;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kali-site-page td,
+.kali-site-page th {
+  border-bottom: 1px solid rgba(0, 80, 50, 0.15);
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  color: #9ab8a0;
+  vertical-align: top;
+}
+
+.kali-site-page tbody tr:nth-child(odd) td {
+  background: rgba(0, 40, 22, 0.2);
+}
+
+.kali-site-page tbody tr:hover td {
+  background: rgba(0, 100, 55, 0.12);
+  color: #b4d0bc;
+}
+
+.kali-site-page tbody tr:last-child td,
+.kali-site-page tbody tr:last-child th {
+  border-bottom: none;
+}
+
+/* Lists */
+.kali-site-page ul,
+.kali-site-page ol {
+  margin: 0.4rem 0 1rem 1.2rem;
+  color: #9ab8a0;
+  font-size: 0.95rem;
+}
+
+.kali-site-page li {
+  margin: 0.25rem 0;
+  padding-left: 0.15rem;
+}
+
+.kali-site-page li::marker {
+  color: #2e8b57;
+}
+
+/* Code */
+.kali-site-page code,
+.kali-site-page kbd,
+.kali-site-page samp {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.86em;
+  background: rgba(0, 30, 18, 0.6);
+  border: 1px solid rgba(0, 180, 90, 0.2);
+  border-radius: 5px;
+  padding: 0.1em 0.35em;
+  color: #7dd3a0;
+}
+
+.kali-site-page pre,
+.kali-site-page .highlight {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  background: #050a08 !important;
+  color: #9bc9a8 !important;
+  border: 1px solid rgba(0, 180, 90, 0.2);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  margin: 0.5rem 0 1.1rem;
+}
+
+.kali-site-page pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Buttons (Cayman) */
+body .kali-site-page .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+  padding: 0.5em 1.05em;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  background: rgba(12, 28, 20, 0.85);
+  color: #a8e8b8;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  margin: 0.2rem 0.35rem 0.2rem 0;
+}
+
+body .kali-site-page .btn:hover {
+  color: #d4f8e0;
+  text-decoration: none;
+  border-color: rgba(0, 230, 118, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(0, 40, 20, 0.35);
+}
+
+body .kali-site-page .btn.btn-primary,
+body .kali-site-page a.btn.btn-primary {
+  background: linear-gradient(180deg, #16a34a, #15803d) !important;
+  border: none;
+  color: #f0fdf4 !important;
+  box-shadow: 0 0 0 1px rgba(0, 230, 118, 0.25), 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+body .kali-site-page .btn.btn-primary:hover {
+  color: #fff !important;
+  filter: brightness(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .kali-site-page .btn:hover {
+    transform: none;
+  }
+}
