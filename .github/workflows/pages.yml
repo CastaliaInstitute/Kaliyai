@@ -27,7 +27,30 @@ jobs:
         with:
           source: ./docs
           destination: ./_site
-      - uses: actions/upload-pages-artifact@v3
+      # package _site/ like upload-pages-artifact; use upload-artifact with
+      # overwrite: true to avoid duplicate "github-pages" artifacts if finalize
+      # retries (deploy-pages v4+ fails when >1 share the same name)
+      - name: Archive site for Pages
+        run: |
+          echo ::group::Archive artifact
+          tar --dereference --hard-dereference \
+            --directory "$INPUT_PATH" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude='.[^/]*' \
+            .
+          echo ::endgroup::
+        env:
+          INPUT_PATH: _site/
+      - name: Upload Pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+          overwrite: true
 
   deploy:
     needs: build
@@ -37,4 +60,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
