@@ -11,7 +11,7 @@ The public [Kali AI / Anubis](index.html) site is published with **GitHub Pages*
 
 - Repository: [CastaliaInstitute/anubis](https://github.com/CastaliaInstitute/anubis)
 - The repo includes `docs/CNAME` with `anubis.castalia.institute` so the Pages artifact advertises the hostname.
-- **Settings → Pages** — custom domain: `anubis.castalia.institute`, **Enforce HTTPS** after DNS & certificate are green.
+- **Settings → Pages** — in `CastaliaInstitute/anubis` add **Custom domain** `anubis.castalia.institute`, save, then **Enforce HTTPS** once Cloudflare and GitHub show the domain as valid. (A repo with admin rights may be required; the Pages REST `PATCH` call returns 404 if your token is not an org admin.)
 
 ## Cloudflare (castalia.institute)
 
