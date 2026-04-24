@@ -5,10 +5,11 @@ title: Kali AI — Anubis
 
 # Kali AI
 
-**Kali AI** pairs Google Gemini with [Kali NetHunter](https://www.kali.org/docs/nethunter/) so a phone running Kali can plan, execute, and narrate security work in natural language. The project has two parts:
+**Kali AI** pairs Google Gemini with [Kali NetHunter](https://www.kali.org/docs/nethunter/) so a phone running Kali can plan, execute, and narrate security work in natural language. The project has three parts:
 
 1. **Anubis** — an Android app (Kotlin + Jetpack Compose) that talks to Gemini and forwards tool-calls to a local MCP server on the device.
 2. **NetHunter prep** — host-side scripts that flash a OnePlus One (`bacon`) with LineageOS 18.1 + TWRP + Magisk + Kali NetHunter so Anubis has a real Kali userland to drive.
+3. **OpenVAS / GVM** — a full [Greenbone Vulnerability Manager](https://www.openvas.org/) (OpenVAS) deployment story: `deploy.sh` drives install from a Mac over `adb` into the Kali chroot, with **Docker on the Mac** as the supported path for the stock `bacon` kernel, and on-device GVM for kernels that actually support PostgreSQL. Details: [OpenVAS / GVM](./openvas.html).
 
 <p align="center">
   <a class="btn btn-primary" href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1">
@@ -63,6 +64,16 @@ Large artifacts (ROMs, Magisk, Kali rootfs, Gapps) are **not** checked in — th
 
 Source: [`nethunter-prep/`](https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-prep)
 
+### OpenVAS / GVM (vulnerability management)
+
+GVM is not an APK — it is a **server stack** (`gvmd`, `ospd-openvas`, `gsad`, Redis, PostgreSQL) installed **inside the NetHunter chroot** with Kali’s packages. The repo provides:
+
+- **`deploy.sh`** (runs on a Mac) — creates swap, stages scripts, `apt install gvm`, `gvm-setup`, start/stop daemons, `adb forward` so GSA is available at `https://localhost:9392` on the host.
+- **`chroot/*.sh`** — idempotent install, start/stop, and feed sync **without** systemd (manual `postgres` / `redis` / `gvmd` / `gsad` bring-up).
+- **`docker-mac/`** — **Greenbone in Docker Desktop** on the Mac, plus `gvm-tools` in the chroot and an `adb reverse` path so the phone can run **`gvm-cli` / `gvm-script` against the Mac** (the practical option on the OnePlus One’s LOS 18.1 kernel, which lacks `CONFIG_SYSVIPC` and `CONFIG_SWAP` — so on-device `initdb` and swap-backed installs fail).
+
+[Full write-up, commands, and kernel triage →](./openvas.html)
+
 ---
 
 ## Run it in the cloud
@@ -95,6 +106,7 @@ See the [Codespaces guide](./codespaces.html) for details.
 | Built-in MCP engine | ✅ tool catalog, in-process dispatch |
 | Eval harness | ✅ Robolectric unit tests + JSON eval cases |
 | OnePlus One bring-up | ✅ Magisk + LOS 18.1 + NetHunter 2026.1 |
+| OpenVAS / GVM | ✅ Mac orchestrator + chroot scripts; **Docker+phone** path for `bacon`; on-device GVM for SysV+swap–capable kernels (documented) |
 | Cloud Codespaces | ✅ Kali-in-Docker + Android SDK |
 
 ## Links

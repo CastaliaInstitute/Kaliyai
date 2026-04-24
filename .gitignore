@@ -31,7 +31,9 @@ nethunter-prep/*.tar.xz
 nethunter-prep/*.tar.gz
 nethunter-prep/SHA256SUMS
 nethunter-prep/neth-extract/
-nethunter-prep/openvas/
+# OpenVAS: track scripts; never commit admin creds
+nethunter-prep/openvas/**/.secrets/
+nethunter-prep/openvas/**/.secrets/**
 
 # Logs / temp
 *.log

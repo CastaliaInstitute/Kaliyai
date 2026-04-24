@@ -17,6 +17,7 @@ Part of the [Kali AI](https://anubis.castalia.institute/) project by the [Castal
 |------|---------|
 | [`nethunter-gemini-mcp/`](./nethunter-gemini-mcp) | The Anubis Android app (Kotlin + Jetpack Compose). Gradle `rootProject.name = "anubis"`. |
 | [`nethunter-prep/`](./nethunter-prep) | Host-side scripts that stage a OnePlus One (`bacon`) with LineageOS 18.1 + TWRP + Magisk + Kali NetHunter. Large binary artifacts are git-ignored. |
+| [`nethunter-prep/openvas/`](./nethunter-prep/openvas) | **OpenVAS / GVM:** `deploy.sh` (Mac) installs Greenbone in the Kali chroot; [`docker-mac/`](./nethunter-prep/openvas/docker-mac) runs GVM in Docker and uses the phone as `gvm-cli` client over `adb reverse` (recommended on stock `bacon` kernel). See the [site](https://anubis.castalia.institute/openvas.html). |
 | [`docs/`](./docs) | GitHub Pages site describing the Kali AI project. |
 | [`.devcontainer/`](./.devcontainer) | GitHub Codespaces definition — spins up a Kali userland plus the Android SDK to build/run Anubis in the cloud. |
 
