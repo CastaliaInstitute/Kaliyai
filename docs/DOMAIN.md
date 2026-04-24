@@ -13,7 +13,11 @@ The public [Kali AI / Anubis](index.html) site is published with **GitHub Pages*
 - The repo includes `docs/CNAME` with `anubis.castalia.institute` so the Pages artifact advertises the hostname.
 - **Settings → Pages** — in `CastaliaInstitute/anubis` add **Custom domain** `anubis.castalia.institute`, save, then **Enforce HTTPS** once Cloudflare and GitHub show the domain as valid. (A repo with admin rights may be required; the Pages REST `PATCH` call returns 404 if your token is not an org admin.)
 
-## Cloudflare (castalia.institute)
+## Monorepo index (castalia.institute)
+
+The [castalia.institute](https://github.com/CastaliaInstitute/castalia.institute) repo has a [master list of GitHub Pages custom domains](https://github.com/CastaliaInstitute/castalia.institute/blob/main/docs/CASTALIA_GITHUB_PAGES_SETUP.md) (including anubis). **Authoritative DNS for this deployment is Cloudflare,** not AWS Route 53. Add the CNAME below (or run `./scripts/add-anubis-cname-cloudflare.sh` with a **Zone → DNS:Edit** API token). Older “Route 53” docs in the monorepo are legacy for other cutovers; do not use them for the live `castalia.institute` zone.
+
+## Cloudflare (castalia.institute) — this is the live path
 
 Use a **CNAME** record in the [Cloudflare](https://dash.cloudflare.com) zone for `castalia.institute`:
 
@@ -25,6 +29,17 @@ Use a **CNAME** record in the [Cloudflare](https://dash.cloudflare.com) zone for
 - **SSL/TLS** mode: **Full (strict)** once the edge cert to GitHub is working.
 
 **API / tokens:** if you use the Cloudflare API to manage DNS, keep the token in your org’s vault (e.g. the same place other Castalia Institute / Castalia.Institute credentials live) — not in this repository.
+
+### Add the CNAME with the API (fastest, repeatable)
+
+1. [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) with **Zone → DNS: Edit** (zone scope: `castalia.institute`), or a single-zone token with the same permission.
+2. In a shell (from the **anubis** repo):
+   ```bash
+   export CLOUDFLARE_API_TOKEN="…"
+   ./scripts/add-anubis-cname-cloudflare.sh
+   ```
+3. This creates or updates **CNAME** `anubis` → `castaliainstitute.github.io` with **Proxied: on**. If your Wrangler/CLI user only has **zone (read)**, the token must be one with **DNS write** for that zone.
+4. Verify: `dig +short anubis.castalia.institute CNAME` (after propagation, often under a minute on Cloudflare).
 
 ## Canonical URL
 
