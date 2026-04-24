@@ -18,6 +18,18 @@ Part of the [Kali AI](https://anubis.castalia.institute/) project by the [Castal
 | [`nethunter-gemini-mcp/`](./nethunter-gemini-mcp) | The Anubis Android app (Kotlin + Jetpack Compose). Gradle `rootProject.name = "anubis"`. |
 | [`nethunter-prep/`](./nethunter-prep) | Host-side scripts that stage a OnePlus One (`bacon`) with LineageOS 18.1 + TWRP + Magisk + Kali NetHunter. Large binary artifacts are git-ignored. |
 | [`nethunter-prep/openvas/`](./nethunter-prep/openvas) | **OpenVAS / GVM:** `deploy.sh` (Mac) installs Greenbone in the Kali chroot; [`docker-mac/`](./nethunter-prep/openvas/docker-mac) runs GVM in Docker and uses the phone as `gvm-cli` client over `adb reverse` (recommended on stock `bacon` kernel). See the [site](https://anubis.castalia.institute/openvas.html). |
+
+## Cybersecurity MSAI (AINS-63xx)
+
+Kali AI / Anubis is the **open lab referent** for the **Aurnova MSAI — Cybersecurity AI** concentration. Companion **Jupyter Books** in [CastaliaInstitute](https://github.com/CastaliaInstitute):
+
+| Code | Book (Pages) | Repository |
+|------|--------------|------------|
+| AINS 6300 | [AI in threat detection](https://castaliainstitute.github.io/ains-6300-ai-in-threat-detection/) | [ains-6300-ai-in-threat-detection](https://github.com/CastaliaInstitute/ains-6300-ai-in-threat-detection) |
+| AINS 6301 | [Automated response systems](https://castaliainstitute.github.io/ains-6301-automated-response-systems/) | [ains-6301-automated-response-systems](https://github.com/CastaliaInstitute/ains-6301-automated-response-systems) |
+| AINS 6302 | [AI for risk assessment](https://castaliainstitute.github.io/ains-6302-ai-for-risk-assessment/) | [ains-6302-ai-for-risk-assessment](https://github.com/CastaliaInstitute/ains-6302-ai-for-risk-assessment) |
+
+Rationale, learning outcomes, and how faculty can use the stack: **[Pedagogy (GitHub Pages)](https://anubis.castalia.institute/pedagogy.html)** and [`docs/pedagogy.md`](./docs/pedagogy.md).
 | [`docs/`](./docs) | GitHub Pages site describing the Kali AI project. |
 | [`.devcontainer/`](./.devcontainer) | GitHub Codespaces definition — spins up a Kali userland plus the Android SDK to build/run Anubis in the cloud. |
 

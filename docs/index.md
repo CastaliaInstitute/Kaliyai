@@ -44,6 +44,20 @@ title: Kali AI — Anubis
   </div>
 </section>
 
+<section class="kali-teach" id="teaching" aria-label="MSAI Cybersecurity teaching">
+  <div class="kali-teach-inner">
+    <p class="kali-teach-kicker">Aurnova MSAI · Cybersecurity AI concentration</p>
+    <h2>Built for the <strong>AINS-63xx</strong> sequence</h2>
+    <p class="kali-teach-deck">Kali AI is the <strong>shared lab object</strong> for graduate cybersecurity work that must combine <strong>real Kali tooling</strong>, <strong>LLM planning</strong>, and <strong>governed automation</strong> (MCP). The companion <strong>Jupyter Books</strong> for <strong>AINS 6300–6302</strong> anchor threat detection, automated response, and AI-driven risk in the same public GitHub org.</p>
+    <ul class="kali-teach-list">
+      <li><a href="https://castaliainstitute.github.io/ains-6300-ai-in-threat-detection/"><strong>AINS 6300</strong> — AI in threat detection</a> · <a href="https://github.com/CastaliaInstitute/ains-6300-ai-in-threat-detection">repo</a></li>
+      <li><a href="https://castaliainstitute.github.io/ains-6301-automated-response-systems/"><strong>AINS 6301</strong> — Automated response systems</a> · <a href="https://github.com/CastaliaInstitute/ains-6301-automated-response-systems">repo</a></li>
+      <li><a href="https://castaliainstitute.github.io/ains-6302-ai-for-risk-assessment/"><strong>AINS 6302</strong> — AI for risk assessment</a> · <a href="https://github.com/CastaliaInstitute/ains-6302-ai-for-risk-assessment">repo</a></li>
+    </ul>
+    <p class="kali-teach-cta"><a class="btn btn-primary" href="{{ '/pedagogy.html' | relative_url }}">Why this matters in the program →</a></p>
+  </div>
+</section>
+
 <section class="kali-arch" id="flow" aria-label="Architecture diagram">
   <h2>How it fits together</h2>
   <p class="kali-sub">Gemini never runs exploits in the cloud — the model <em>plans</em>; the phone and chroot <em>execute</em>.</p>
@@ -136,6 +150,7 @@ title: Kali AI — Anubis
 - OnePlus One + NetHunter
 - **OpenVAS / GVM** — Mac + chroot
 - **Codespaces** ready
+- **AINS 6300–6302** Jupyter Books
 {: .kali-chips}
 
 *Use the [README on GitHub](https://github.com/CastaliaInstitute/anubis#readme) for a full project matrix; this page highlights the product story.*
@@ -145,6 +160,7 @@ title: Kali AI — Anubis
 ## Links
 
 - [This site (custom domain)](https://anubis.castalia.institute/) — [DNS / Cloudflare]({{ '/DOMAIN.html' | relative_url }})
+- [Teaching — AINS-63xx &amp; Cybersecurity MSAI]({{ '/pedagogy.html' | relative_url }})
 - [GitHub · CastaliaInstitute/anubis](https://github.com/CastaliaInstitute/anubis)
 - [Kali NetHunter](https://www.kali.org/docs/nethunter/) · [Gemini](https://ai.google.dev/) · [MCP](https://modelcontextprotocol.io/)
 

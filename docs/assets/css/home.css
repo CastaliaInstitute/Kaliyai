@@ -291,6 +291,82 @@ p.kali-landing-p + table {
   color: #c8e8d0;
 }
 
+/* Teaching / AINS-63xx */
+.kali-teach {
+  margin: 0 auto 2rem;
+  padding: 1.75rem 1.25rem 1.85rem;
+  max-width: 920px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(30, 25, 55, 0.55) 0%, rgba(12, 20, 35, 0.75) 50%, rgba(8, 14, 24, 0.9) 100%);
+  border: 1px solid rgba(130, 110, 220, 0.22);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+.kali-teach-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.kali-teach-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+  color: #9b8ec9;
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+}
+.kali-teach h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: #e8e4ff;
+}
+.kali-teach h2 strong {
+  color: #c4b5fd;
+  font-weight: 700;
+}
+.kali-teach-deck {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #b8b0d4;
+}
+.kali-teach-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.kali-teach-list li {
+  position: relative;
+  padding: 0.4rem 0 0.4rem 0.1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #a8a0c8;
+  border-bottom: 1px solid rgba(130, 110, 220, 0.12);
+}
+.kali-teach-list li:last-child {
+  border-bottom: none;
+}
+.kali-teach-list a {
+  color: #a5b4fc;
+  text-decoration: none;
+}
+.kali-teach-list a[href^="https://github.com"] {
+  color: #7dd3c0;
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
+.kali-teach-list a:hover {
+  text-decoration: underline;
+}
+.kali-teach-cta {
+  margin: 0.25rem 0 0;
+}
+.kali-teach-cta .btn-primary {
+  background: linear-gradient(180deg, #4f46b5, #3730a3);
+  border: 1px solid rgba(165, 180, 252, 0.35);
+  color: #eef2ff !important;
+  box-shadow: 0 6px 20px rgba(40, 30, 100, 0.45);
+}
+
 /* Cloud strip */
 .kali-cloud {
   max-width: 800px;
