@@ -61,13 +61,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.kali.nethunter.mcpchat.BuildConfig
-import com.kali.nethunter.mcpchat.ui.theme.AnubisTheme
+import com.kali.nethunter.mcpchat.ui.theme.KalyaiTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatApp(viewModel: ChatViewModel) {
     val s by viewModel.settings.collectAsState()
-    AnubisTheme {
+    KalyaiTheme {
         val snack = remember { SnackbarHostState() }
         val ctx = LocalContext.current
         LaunchedEffect(viewModel.lastError) {
@@ -89,7 +89,7 @@ fun ChatApp(viewModel: ChatViewModel) {
             s.geminiKey.isNotBlank() || BuildConfig.BAKED_GEMINI_API_KEY.isNotBlank()
         Column(Modifier.fillMaxSize().systemBarsPadding()) {
             TopAppBar(
-                title = { Text("Anubis") },
+                title = { Text("Kalyai") },
                 actions = {
                     IconButton(onClick = { viewModel.showSettings = !viewModel.showSettings }) {
                         Icon(Icons.Filled.Settings, "Settings")

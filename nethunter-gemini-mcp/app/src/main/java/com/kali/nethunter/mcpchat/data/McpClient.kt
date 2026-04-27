@@ -85,7 +85,7 @@ class McpClient(
             put(
                 "clientInfo",
                 buildJsonObject {
-                    put("name", "anubis-android")
+                    put("name", "kalyai-android")
                     put("version", "1.0.0")
                 },
             )

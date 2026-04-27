@@ -112,8 +112,8 @@ tasks.withType<Test>().configureEach {
     if (k != null) {
         environment("GEMINI_API_KEY", k)
     }
-    val live = System.getenv("ANUBIS_LIVE_GEMINI_EVAL")
+    val live = System.getenv("KALYAI_LIVE_GEMINI_EVAL")
     if (live != null) {
-        environment("ANUBIS_LIVE_GEMINI_EVAL", live)
+        environment("KALYAI_LIVE_GEMINI_EVAL", live)
     }
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Run the Anubis / NetHunter MCP eval suite.
+# Run the Kalyai / NetHunter MCP eval suite.
 #
 # Default: offline tests only (built-in tools, intent routing) — no Gemini network calls.
-# Live Gemini prompt evals: export ANUBIS_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY (e.g. from project .env).
+# Live Gemini prompt evals: export KALYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY (e.g. from project .env).
 # Example:
 #   set -a && [ -f .env ] && . ./.env && set +a
-#   export ANUBIS_LIVE_GEMINI_EVAL=1
+#   export KALYAI_LIVE_GEMINI_EVAL=1
 #   ./scripts/run-evals.sh
 set -euo pipefail
 cd "$(dirname "$0")/.."

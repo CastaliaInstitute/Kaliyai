@@ -1,0 +1,29 @@
+# Deploy: npx wrangler deploy (from this directory, after: npm i)
+#
+# 1) Create KV: npx wrangler kv namespace create "AFFILIATE_KV" — put the id below.
+# 2) Set secret: npx wrangler secret put SESSION_HMAC_KEY  (32+ char random, store in a vault)
+# 3) Attach routes in the Cloudflare zone for affiliates.castalia.institute (or parent), e.g.:
+#    - *.affiliates.castalia.institute/*
+#    - *.*.affiliates.castalia.institute/*   (course + org)
+#    Or set zone_id + route patterns in the dashboard after first deploy.
+#
+# GitHub Pages behind this Worker: CNAME to *.github.io, proxied (orange cloud), SSL Full (strict).
+
+name = "affiliates-auth"
+main = "src/index.ts"
+compatibility_date = "2024-10-22"
+
+[[kv_namespaces]]
+binding = "AFFILIATE_KV"
+id = "replace-with-kv-namespace-id"
+# After: npx wrangler kv namespace create AFFILIATE_KV --preview
+# preview_id = "…"
+
+# Optional: set routes in dashboard if wrangler account cannot bind routes automatically
+# For zone `affiliates.castalia.institute` (delegated) use e.g.:
+# [[routes]]
+# pattern = "*.affiliates.castalia.institute/*"
+# zone_name = "affiliates.castalia.institute"
+# [[routes]]
+# pattern = "*.*.affiliates.castalia.institute/*"
+# zone_name = "affiliates.castalia.institute"

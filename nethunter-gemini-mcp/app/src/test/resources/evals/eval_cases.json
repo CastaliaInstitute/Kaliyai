@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "description": "Anubis: built-in MCP, intent examples, and optional live Gemini e2e (set ANUBIS_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
+  "description": "Kalyai: built-in MCP, intent examples, and optional live Gemini e2e (set KALYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
   "builtin": [
     {
       "id": "echo_basic",
       "tool": "echo",
-      "args": { "message": "anubis_eval" },
-      "textContains": ["echo: anubis_eval"],
+      "args": { "message": "kalyai_eval" },
+      "textContains": ["echo: kalyai_eval"],
       "textNotContains": ["error", "isError"]
     },
     {

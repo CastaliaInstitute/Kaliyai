@@ -108,7 +108,7 @@ class GeminiRestClient(private val client: HttpClient) {
                 "?key=${apiKey}"
         val response = client.post(url) {
             contentType(ContentType.Application.Json)
-            header("x-goog-api-client", "anubis-android/1.0.0")
+            header("x-goog-api-client", "kalyai-android/1.0.0")
             setBody(body.toString())
         }
         val text = response.bodyAsText()

@@ -88,7 +88,7 @@ class ChatViewModel(app: Application) : AndroidViewModel(app) {
     private val contentBlocks = mutableListOf<kotlinx.serialization.json.JsonObject>()
 
     private val systemPrompt = """
-        You are Anubis, a concise assistant. The app includes built-in MCP tools (no server required)
+        You are Kalyai, a concise assistant. The app includes built-in MCP tools (no server required)
         and may optionally use an external JSON-RPC MCP URL for more tools. When the user asks to
         scan Wi-Fi, list networks, or see nearby access points, call the wifi_scan tool (after
         they have granted Location if needed). On a rooted device with Kali / NetHunter, use

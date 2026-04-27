@@ -1,0 +1,12 @@
+{
+  "name": "affiliates-edge",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "set-password": "node scripts/set-affiliate-password.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0"
+  }
+}
