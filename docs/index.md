@@ -93,48 +93,48 @@ title: Kali AI — Kaliyai
   <p class="kali-sub">Gemini is a <strong>remote</strong> API: it scores tokens and proposes structured <strong>function calls</strong>, but it does <em>not</em> have a TUN device into your chroot. The phone runs Kaliyai and the tool engine; the chroot runs Kali. Trust boundaries and logging attach to the latter, not to the generative service.</p>
   <svg class="kali-flow-svg" viewBox="0 0 800 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow: Kaliyai to Gemini, MCP, then Kali chroot">
     <defs>
-      <linearGradient id="gbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#163024"/><stop offset="100%" stop-color="#0a150f"/></linearGradient>
+      <linearGradient id="gbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#163034"/><stop offset="100%" stop-color="#0a1518"/></linearGradient>
       <filter id="gs"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/></filter>
-      <marker id="marrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#2e8b57"/></marker>
+      <marker id="marrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#2e8b8b"/></marker>
     </defs>
-    <rect x="0" y="0" width="800" height="200" fill="#050a08" rx="12"/>
+    <rect x="0" y="0" width="800" height="200" fill="#050a0c" rx="12"/>
     <!-- Kaliyai -->
     <g filter="url(#gs)">
-    <rect x="28" y="44" width="150" height="100" rx="10" fill="url(#gbox)" stroke="rgba(74,222,128,0.35)"/>
-    <text x="103" y="78" text-anchor="middle" fill="#a8e8b8" font-size="16" font-family="DM Sans, system-ui, sans-serif" font-weight="700">Kaliyai</text>
-    <text x="103" y="100" text-anchor="middle" fill="#6b8f7a" font-size="12" font-family="JetBrains Mono, monospace">Compose UI</text>
-    <text x="103" y="120" text-anchor="middle" fill="#6b8f7a" font-size="11" font-family="JetBrains Mono, monospace">Gemini client</text>
+    <rect x="28" y="44" width="150" height="100" rx="10" fill="url(#gbox)" stroke="rgba(74,222,208,0.35)"/>
+    <text x="103" y="78" text-anchor="middle" fill="#a8e8e8" font-size="16" font-family="DM Sans, system-ui, sans-serif" font-weight="700">Kaliyai</text>
+    <text x="103" y="100" text-anchor="middle" fill="#6b8f8a" font-size="12" font-family="JetBrains Mono, monospace">Compose UI</text>
+    <text x="103" y="120" text-anchor="middle" fill="#6b8f8a" font-size="11" font-family="JetBrains Mono, monospace">Gemini client</text>
     </g>
     <!-- arrow 1 -->
-    <line x1="188" y1="94" x2="270" y2="94" stroke="#2a6b4a" stroke-width="2" marker-end="url(#marrow)"/>
-    <text x="230" y="80" text-anchor="middle" fill="#5a9a6a" font-size="9" font-family="DM Sans, sans-serif">REST · prompt</text>
+    <line x1="188" y1="94" x2="270" y2="94" stroke="#2a6b6b" stroke-width="2" marker-end="url(#marrow)"/>
+    <text x="230" y="80" text-anchor="middle" fill="#5a9a9a" font-size="9" font-family="DM Sans, sans-serif">REST · prompt</text>
     <!-- Gemini -->
     <g filter="url(#gs)">
     <rect x="282" y="32" width="150" height="120" rx="10" fill="url(#gbox)" stroke="rgba(120, 180, 255,0.4)"/>
     <text x="357" y="80" text-anchor="middle" fill="#b0d0ff" font-size="16" font-family="DM Sans, system-ui, sans-serif" font-weight="700">Gemini</text>
     <text x="357" y="104" text-anchor="middle" fill="#6b8a9a" font-size="11" font-family="DM Sans, sans-serif">function calling</text>
-    <text x="357" y="124" text-anchor="middle" fill="#5a7a6a" font-size="10" font-family="JetBrains Mono, monospace">REST</text>
+    <text x="357" y="124" text-anchor="middle" fill="#5a7a7a" font-size="10" font-family="JetBrains Mono, monospace">REST</text>
     </g>
     <!-- arrow 2 -->
-    <line x1="440" y1="94" x2="512" y2="94" stroke="#2a6b4a" stroke-width="2" marker-end="url(#marrow)"/>
-    <text x="478" y="80" text-anchor="middle" fill="#5a9a6a" font-size="9" font-family="DM Sans, sans-serif">tool calls</text>
+    <line x1="440" y1="94" x2="512" y2="94" stroke="#2a6b6b" stroke-width="2" marker-end="url(#marrow)"/>
+    <text x="478" y="80" text-anchor="middle" fill="#5a9a9a" font-size="9" font-family="DM Sans, sans-serif">tool calls</text>
     <!-- MCP -->
     <g filter="url(#gs)">
-    <rect x="524" y="44" width="120" height="100" rx="10" fill="url(#gbox)" stroke="rgba(74,222,128,0.35)"/>
-    <text x="584" y="85" text-anchor="middle" fill="#a8e8b8" font-size="14" font-family="DM Sans, system-ui, sans-serif" font-weight="700">MCP engine</text>
-    <text x="584" y="110" text-anchor="middle" fill="#6b8f7a" font-size="10" font-family="JetBrains Mono, monospace">in-process</text>
-    <text x="584" y="128" text-anchor="middle" fill="#6b8f7a" font-size="10" font-family="DM Sans, sans-serif">tool catalog</text>
+    <rect x="524" y="44" width="120" height="100" rx="10" fill="url(#gbox)" stroke="rgba(74,222,208,0.35)"/>
+    <text x="584" y="85" text-anchor="middle" fill="#a8e8e8" font-size="14" font-family="DM Sans, system-ui, sans-serif" font-weight="700">MCP engine</text>
+    <text x="584" y="110" text-anchor="middle" fill="#6b8f8a" font-size="10" font-family="JetBrains Mono, monospace">in-process</text>
+    <text x="584" y="128" text-anchor="middle" fill="#6b8f8a" font-size="10" font-family="DM Sans, sans-serif">tool catalog</text>
     </g>
     <!-- arrow: MCP (center x=584) to chroot bar -->
-    <line x1="584" y1="144" x2="584" y2="150" stroke="#2a6b4a" stroke-width="2" marker-end="url(#marrow)"/>
-    <text x="600" y="140" text-anchor="middle" fill="#5a9a6a" font-size="9" font-family="DM Sans, sans-serif">exec / intent</text>
+    <line x1="584" y1="144" x2="584" y2="150" stroke="#2a6b6b" stroke-width="2" marker-end="url(#marrow)"/>
+    <text x="600" y="140" text-anchor="middle" fill="#5a9a9a" font-size="9" font-family="DM Sans, sans-serif">exec / intent</text>
     <!-- Chroot (wide) -->
     <g filter="url(#gs)">
-    <rect x="420" y="150" width="360" height="40" rx="8" fill="#0a1810" stroke="rgba(74,222,128,0.28)"/>
-    <text x="600" y="168" text-anchor="middle" fill="#8fd4a0" font-size="13" font-family="DM Sans, system-ui, sans-serif" font-weight="600">Kali NetHunter chroot</text>
-    <text x="600" y="184" text-anchor="middle" fill="#5a7a62" font-size="10" font-family="JetBrains Mono, monospace">nmap · msf · OpenVAS / GVM* · aircrack · …</text>
+    <rect x="420" y="150" width="360" height="40" rx="8" fill="#0a1818" stroke="rgba(74,222,208,0.28)"/>
+    <text x="600" y="168" text-anchor="middle" fill="#8fd4d0" font-size="13" font-family="DM Sans, system-ui, sans-serif" font-weight="600">Kali NetHunter chroot</text>
+    <text x="600" y="184" text-anchor="middle" fill="#5a7a6a" font-size="10" font-family="JetBrains Mono, monospace">nmap · msf · OpenVAS / GVM* · aircrack · …</text>
     </g>
-    <text x="8" y="16" fill="#3d5a48" font-size="9" font-family="JetBrains Mono, monospace">* GVM: scanner+manager+UI; may split across hosts — see /openvas.html</text>
+    <text x="8" y="16" fill="#3d5a5a" font-size="9" font-family="JetBrains Mono, monospace">* GVM: scanner+manager+UI; may split across hosts — see /openvas.html</text>
   </svg>
 </section>
 
