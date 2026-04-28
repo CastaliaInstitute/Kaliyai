@@ -1,15 +1,36 @@
 ---
 layout: home
-title: Kali AI — Anubis
+title: Kali AI — Kaliyai
 ---
 
 <div class="kali-landing">
+<!--
+  Logo concept: Kaliyai (Kali & AI)
+  
+  Text representation:
+  ╭─────────────────────────────╮
+  │  🐍 KALI  ⟁  AI  🐍        │
+  │       ╲   │   ╱            │
+  │        ╲  │  ╱             │
+  │         ╲ │ ╱              │
+  │      KALIYAI               │
+  │   (kali y ai)              │
+  ╰─────────────────────────────╯
+  
+  Meaning:
+  - ⟁ (triple-yoga symbol) = "y" (and) in Spanish
+  - 🐍 = Kaliya, the serpent/dragon from Hindu mythology
+  - KALI = Kali Linux (security distribution)
+  - AI = Artificial Intelligence / Gemini
+  - The serpent wraps around the conjunction of human security expertise and AI
+-->
 <section class="kali-hero" aria-label="Kali AI introduction">
   <div class="kali-hero-inner">
     <p class="kali-eyebrow">Castalia Institute · NetHunter · Gemini · MCP</p>
-    <h1>Kali <span class="kali-title-ai">AI</span></h1>
+    <h1><span class="kali-logo-text">KALI</span><span class="kali-logo-ampersand">⟁</span><span class="kali-logo-ai">AI</span></h1>
+    <p class="kali-logo-subtitle">Kaliyai — kali y ai</p>
     <p class="kali-hero-subline">A technical stack, not a hosted service</p>
-    <p class="kali-deck"><strong>Anubis</strong> is a native <strong>Android</strong> app: <strong>Kotlin</strong> and <strong>Jetpack Compose</strong> for UI, a client for <strong>Google Gemini</strong> (function-calling), and a built-in <strong>Model Context Protocol (MCP)</strong> runtime that maps those calls to real tools. Under the hood, that ties into <strong>Kali NetHunter</strong>’s <strong>chroot</strong> so the same stack can drive <strong>nmap</strong>, <strong>Metasploit</strong>, RF tools, and ordinary shell workflows — the LLM is the planner, not the process that owns the network stack.</p>
+    <p class="kali-deck"><strong>Kaliyai</strong> (kali y ai — “Kali and AI”) is a native <strong>Android</strong> app: <strong>Kotlin</strong> and <strong>Jetpack Compose</strong> for UI, a client for <strong>Google Gemini</strong> (function-calling), and a built-in <strong>Model Context Protocol (MCP)</strong> runtime that maps those calls to real tools. Under the hood, that ties into <strong>Kali NetHunter</strong>’s <strong>chroot</strong> so the same stack can drive <strong>nmap</strong>, <strong>Metasploit</strong>, RF tools, and ordinary shell workflows — the LLM is the planner, not the process that owns the network stack.</p>
     <p class="kali-deck-note">This project also explores <strong>Greenbone / GVM</strong> (the software behind “OpenVAS”): managed vulnerability scanning, <strong>NVT</strong> feeds, <strong>GMP</strong>, and <strong>GSA</strong>, in tension with <strong>mobile</strong> CPU and <strong>kernel</strong> constraints. <a href="#tech-stack">How that fits the stack</a> · <a href="{{ '/openvas.html' | relative_url }}">GVM in depth</a></p>
     <div class="kali-hero-stats" role="list">
       <div class="kali-hero-stat" role="listitem"><span class="kali-hero-stat-label">LLM</span> Gemini + tool / function APIs</div>
@@ -18,8 +39,8 @@ title: Kali AI — Anubis
     </div>
     <p class="kali-hero-motto">The important boundary is <em>cognitive</em> (the model) versus <em>mechanical</em> (Kali, radios, scanners, shells). The former never needs root on your lab hardware; the latter is where the security story lives.</p>
     <div class="kali-hero-cta">
-      <a class="btn btn-primary" href="https://github.com/CastaliaInstitute/anubis">Browse the repository</a>
-      <a class="btn" href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1">Optional cloud dev (Codespaces)</a>
+      <a class="btn btn-primary" href="https://github.com/CastaliaInstitute/Kaliyai">Browse the repository</a>
+      <a class="btn" href="https://codespaces.new/CastaliaInstitute/Kaliyai?quickstart=1">Optional cloud dev (Codespaces)</a>
     </div>
   </div>
 </section>
@@ -32,7 +53,7 @@ title: Kali AI — Anubis
       <span class="kali-card-icon" aria-hidden="true">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false"><rect x="10" y="3" width="20" height="34" rx="3" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="7" width="12" height="18" rx="1" fill="currentColor" fill-opacity="0.15"/><circle cx="20" cy="30" r="1.5" fill="currentColor" fill-opacity="0.4"/><path d="M8 10 L5 7 L5 14 Z" fill="currentColor" fill-opacity="0.4"/><path d="M8 20 L3 20 L6 16 Z" fill="currentColor" fill-opacity="0.3"/><path d="M32 20 L35 20 L32 16 Z" fill="currentColor" fill-opacity="0.3"/></svg>
       </span>
-      <h3>Anubis (app + MCP host)</h3>
+      <h3>Kaliyai (app + MCP host)</h3>
       <p>Runs on the phone as a normal Android process. <strong>Compose</strong> drives the chat UI; <strong>Coroutines / JVM</strong> run networking to Gemini; the <strong>MCP</strong> layer is the place where you declare and enforce which tools exist and how they are invoked — a structured bridge between an LLM’s <em>intent</em> and concrete actions.</p>
     </article>
     <article class="kali-card">
@@ -69,18 +90,18 @@ title: Kali AI — Anubis
 <section class="kali-arch" id="flow" aria-label="Architecture diagram">
   <p class="kali-section-kicker">Data flow</p>
   <h2>How it fits together</h2>
-  <p class="kali-sub">Gemini is a <strong>remote</strong> API: it scores tokens and proposes structured <strong>function calls</strong>, but it does <em>not</em> have a TUN device into your chroot. The phone runs Anubis and the tool engine; the chroot runs Kali. Trust boundaries and logging attach to the latter, not to the generative service.</p>
-  <svg class="kali-flow-svg" viewBox="0 0 800 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow: Anubis to Gemini, MCP, then Kali chroot">
+  <p class="kali-sub">Gemini is a <strong>remote</strong> API: it scores tokens and proposes structured <strong>function calls</strong>, but it does <em>not</em> have a TUN device into your chroot. The phone runs Kaliyai and the tool engine; the chroot runs Kali. Trust boundaries and logging attach to the latter, not to the generative service.</p>
+  <svg class="kali-flow-svg" viewBox="0 0 800 200" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow: Kaliyai to Gemini, MCP, then Kali chroot">
     <defs>
       <linearGradient id="gbox" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#163024"/><stop offset="100%" stop-color="#0a150f"/></linearGradient>
       <filter id="gs"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/></filter>
       <marker id="marrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#2e8b57"/></marker>
     </defs>
     <rect x="0" y="0" width="800" height="200" fill="#050a08" rx="12"/>
-    <!-- Anubis -->
+    <!-- Kaliyai -->
     <g filter="url(#gs)">
     <rect x="28" y="44" width="150" height="100" rx="10" fill="url(#gbox)" stroke="rgba(74,222,128,0.35)"/>
-    <text x="103" y="78" text-anchor="middle" fill="#a8e8b8" font-size="16" font-family="DM Sans, system-ui, sans-serif" font-weight="700">Anubis</text>
+    <text x="103" y="78" text-anchor="middle" fill="#a8e8b8" font-size="16" font-family="DM Sans, system-ui, sans-serif" font-weight="700">Kaliyai</text>
     <text x="103" y="100" text-anchor="middle" fill="#6b8f7a" font-size="12" font-family="JetBrains Mono, monospace">Compose UI</text>
     <text x="103" y="120" text-anchor="middle" fill="#6b8f7a" font-size="11" font-family="JetBrains Mono, monospace">Gemini client</text>
     </g>
@@ -120,12 +141,12 @@ title: Kali AI — Anubis
 <div class="kali-components" id="tech-stack">
   <p class="kali-kicker">Names you can look up</p>
   <h2 id="at-a-glance">How the pieces map</h2>
-  <p class="kali-landing-p">The repo implements a <strong>research and teaching</strong> stack, not a hosted product. The table is the mental model: what <em>thing</em> in the world each part corresponds to. Build scripts, flash instructions, and secrets handling live in <a href="https://github.com/CastaliaInstitute/anubis">GitHub</a>, not on this static site.</p>
+  <p class="kali-landing-p">The repo implements a <strong>research and teaching</strong> stack, not a hosted product. The table is the mental model: what <em>thing</em> in the world each part corresponds to. Build scripts, flash instructions, and secrets handling live in <a href="https://github.com/CastaliaInstitute/Kaliyai">GitHub</a>, not on this static site.</p>
   <div class="kali-table-wrap">
   <table>
     <thead><tr><th>Concern</th><th>Primary technologies</th></tr></thead>
     <tbody>
-      <tr><td>On-device app &amp; control plane</td><td><a href="https://kotlinlang.org/">Kotlin</a> · <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> · <a href="https://github.com/CastaliaInstitute/anubis/tree/main/nethunter-gemini-mcp">Anubis package</a> <code>com.kali.nethunter.mcpchat</code></td></tr>
+      <tr><td>On-device app &amp; control plane</td><td><a href="https://kotlinlang.org/">Kotlin</a> · <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> · <a href="https://github.com/CastaliaInstitute/Kaliyai/tree/main/nethunter-gemini-mcp">Kaliyai package</a> <code>com.kali.nethunter.mcpchat</code></td></tr>
       <tr><td>Generative layer</td><td><a href="https://ai.google.dev/gemini-api">Google Gemini API</a> (text + function / tool calls)</td></tr>
       <tr><td>Tool abstraction</td><td><a href="https://modelcontextprotocol.io/">Model Context Protocol</a> — in-process “host” in the app, mapping calls to Kali/ADB/GVM as appropriate</td></tr>
       <tr><td>Linux tool ecosystem</td><td><a href="https://www.kali.org/">Kali</a> userland in a <a href="https://www.kali.org/docs/nethunter/">NetHunter</a> <strong>chroot</strong></td></tr>
@@ -139,8 +160,8 @@ title: Kali AI — Anubis
 
 <section class="kali-cloud" aria-label="Development environment">
   <h2>Same stack, a workstation-class shell</h2>
-  <p>Because building an <strong>APK</strong> and hosting a <strong>full Linux</strong> at the same time is resource-heavy, the repository ships a <a href="https://containers.dev/">devcontainer</a> definition: a standard <strong>Ubuntu</strong> base, <strong>Java / Gradle</strong> for the Android app, the <strong>Android SDK</strong> toolchains, and a <strong>Kali</strong> process namespace via <strong>Docker</strong> so you can exercise CLI workflows beside the app without carrying a second laptop image in git. That is <em>an engineering convenience</em>, not a requirement to use Anubis on a phone in the field — it is the same components, in a controllable form factor for CI and coursework.</p>
-  <a href="https://codespaces.new/CastaliaInstitute/anubis?quickstart=1"><img src="https://github.com/codespaces/badge.svg" width="200" height="32" alt="Open in GitHub Codespaces" /></a>
+  <p>Because building an <strong>APK</strong> and hosting a <strong>full Linux</strong> at the same time is resource-heavy, the repository ships a <a href="https://containers.dev/">devcontainer</a> definition: a standard <strong>Ubuntu</strong> base, <strong>Java / Gradle</strong> for the Android app, the <strong>Android SDK</strong> toolchains, and a <strong>Kali</strong> process namespace via <strong>Docker</strong> so you can exercise CLI workflows beside the app without carrying a second laptop image in git. That is <em>an engineering convenience</em>, not a requirement to use Kaliyai on a phone in the field — it is the same components, in a controllable form factor for CI and coursework.</p>
+  <a href="https://codespaces.new/CastaliaInstitute/Kaliyai?quickstart=1"><img src="https://github.com/codespaces/badge.svg" width="200" height="32" alt="Open in GitHub Codespaces" /></a>
   <p class="kali-cloud-mono">For install steps, <code>postCreate</code> behavior, and secret wiring, read <a href="{{ '/codespaces.html' | relative_url }}">Development environment (Codespaces / devcontainer)</a> — a companion page to this overview.</p>
   <div class="kali-cloud-terminal" aria-label="Illustrative commands only">
   <div class="kali-cloud-terminal-bar">Example — not a deployment checklist</div>
@@ -152,13 +173,13 @@ title: Kali AI — Anubis
 </div>
 
 <div class="kali-footer-block kali-landing">
-  <p class="kali-lede">The <a href="https://github.com/CastaliaInstitute/anubis#readme">README on GitHub</a> records repo layout, build steps, and contribution workflow. <strong>This site is the architecture narrative</strong>: which technologies are in play, how responsibilities are split, and how the work connects to the <a href="{{ '/pedagogy.html' | relative_url }}">AINS-63xx</a> program.</p>
+  <p class="kali-lede">The <a href="https://github.com/CastaliaInstitute/Kaliyai#readme">README on GitHub</a> records repo layout, build steps, and contribution workflow. <strong>This site is the architecture narrative</strong>: which technologies are in play, how responsibilities are split, and how the work connects to the <a href="{{ '/pedagogy.html' | relative_url }}">AINS-63xx</a> program.</p>
   <div class="kali-footer-grid">
   <div class="kali-footer-col" markdown="1">
 
 ## Status {#status}
 
-- Anubis — Compose + chat
+- Kaliyai — Compose + chat
 - Gemini — function-calling
 - Builtin MCP + eval harness
 - OnePlus One + NetHunter
@@ -172,9 +193,9 @@ title: Kali AI — Anubis
 
 ## Links {#links}
 
-- [anubis.castalia.institute](https://anubis.castalia.institute/) (this site) · <a href="{{ '/DOMAIN.html' | relative_url }}">DNS &amp; Cloudflare</a>
+- [kaliyai.castalia.institute](https://kaliyai.castalia.institute/) (this site) · <a href="{{ '/DOMAIN.html' | relative_url }}">DNS &amp; Cloudflare</a>
 - [Pedagogy &amp; AINS-63xx]({{ '/pedagogy.html' | relative_url }})
-- <a href="https://github.com/CastaliaInstitute/anubis">CastaliaInstitute/anubis</a> on GitHub
+- <a href="https://github.com/CastaliaInstitute/Kaliyai">CastaliaInstitute/Kaliyai</a> on GitHub
 - <a href="https://www.kali.org/docs/nethunter/">Kali NetHunter</a> · <a href="https://ai.google.dev/">Gemini</a> · <a href="https://modelcontextprotocol.io/">MCP</a>
 
   </div>

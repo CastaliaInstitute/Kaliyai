@@ -44,8 +44,8 @@ class GeminiPromptE2eEvalTest {
     @Test
     fun promptE2E_cases() = runBlocking {
         assumeTrue(
-            "Set KALYAI_LIVE_GEMINI_EVAL=1 to opt in to live Gemini prompt evals (not run by default on CI).",
-            System.getenv("KALYAI_LIVE_GEMINI_EVAL") == "1",
+            "Set KALIYAI_LIVE_GEMINI_EVAL=1 to opt in to live Gemini prompt evals (not run by default on CI).","
+            System.getenv("KALIYAI_LIVE_GEMINI_EVAL") == "1",
         )
         val apiKey = key
         assumeTrue("Set GEMINI_API_KEY (or source .env before Gradle) to run e2e prompt evals.", !apiKey.isNullOrEmpty())
@@ -140,7 +140,7 @@ class GeminiPromptE2eEvalTest {
 
     private companion object {
         val evalSystemPrompt = """
-            You are Kalyai, a concise assistant. The app includes built-in MCP tools (no server required)
+            You are Kaliyai, a concise assistant. The app includes built-in MCP tools (no server required)
             and may optionally use an external JSON-RPC MCP URL for more tools. When the user asks to
             scan Wi-Fi, list networks, or see nearby access points, call the wifi_scan tool (after
             they have granted Location if needed). On a rooted device with Kali / NetHunter, use

@@ -130,6 +130,48 @@ body .page-header .project-tagline a {
   margin: 0 0 0.9rem;
 }
 
+/* Logo: KALI ⟁ AI (Kaliyai - kali y ai) */
+.kali-hero h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  flex-wrap: wrap;
+}
+
+.kali-logo-text {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.kali-logo-ampersand {
+  font-size: 0.85em;
+  color: #7dd3fc;
+  font-weight: 400;
+  opacity: 0.9;
+  text-shadow: 0 0 20px rgba(125, 211, 252, 0.4);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.85; text-shadow: 0 0 15px rgba(125, 211, 252, 0.3); }
+  50% { opacity: 1; text-shadow: 0 0 25px rgba(125, 211, 252, 0.5); }
+}
+
+.kali-logo-ai {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.kali-logo-subtitle {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6b8f7a;
+  font-style: italic;
+  margin: -0.3rem 0 0.6rem;
+  letter-spacing: 0.1em;
+}
+
 p.kali-deck-note {
   margin: 0 0 1.1rem;
   font-size: 0.95rem;

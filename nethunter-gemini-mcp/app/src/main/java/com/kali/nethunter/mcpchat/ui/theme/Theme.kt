@@ -22,7 +22,7 @@ private val lightScheme = lightColorScheme(
 )
 
 @Composable
-fun KalyaiTheme(
+fun KaliyaiTheme(
     useDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

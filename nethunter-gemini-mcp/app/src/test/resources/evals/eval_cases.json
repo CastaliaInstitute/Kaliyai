@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "description": "Kalyai: built-in MCP, intent examples, and optional live Gemini e2e (set KALYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
+  "description": "Kaliyai: built-in MCP, intent examples, and optional live Gemini e2e (set KALIYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
   "builtin": [
     {
       "id": "echo_basic",
       "tool": "echo",
-      "args": { "message": "kalyai_eval" },
-      "textContains": ["echo: kalyai_eval"],
+      "args": { "message": "kaliyai_eval" },
+      "textContains": ["echo: kaliyai_eval"],
       "textNotContains": ["error", "isError"]
     },
     {

@@ -1,12 +1,12 @@
-# Anubis
+# Kaliyai
 
-**Anubis** is the on-device AI companion for **Kali NetHunter** — an Android app that drives Kali's pen-testing toolchain through Google Gemini over an MCP (Model Context Protocol) bridge.
+**Kaliyai** (Kali Y AI — "Kali and AI") is the on-device AI companion for **Kali NetHunter** — an Android app that drives Kali's pen-testing toolchain through Google Gemini over an MCP (Model Context Protocol) bridge.
 
-Part of the [Kali AI](https://anubis.castalia.institute/) project by the [Castalia Institute](https://github.com/CastaliaInstitute). The public site is served on **anubis.castalia.institute** (Cloudflare in front of GitHub Pages; DNS details in [docs/DOMAIN.md](./docs/DOMAIN.md)).
+Part of the [Kali AI](https://kaliyai.castalia.institute/) project by the [Castalia Institute](https://github.com/CastaliaInstitute). The public site is served on **kaliyai.castalia.institute** (Cloudflare in front of GitHub Pages; DNS details in [docs/DOMAIN.md](./docs/DOMAIN.md)).
 
 ```
 ┌───────────────────┐     Gemini     ┌──────────────────┐   adb / exec   ┌──────────────────┐
-│  Anubis (Android) │ ─────────────► │  Gemini function │ ─────────────► │  Kali NetHunter  │
+│ Kaliyai (Android) │ ─────────────► │  Gemini function │ ─────────────► │  Kali NetHunter  │
 │  Compose + Kotlin │ ◄───────────── │  calls  (tools)  │ ◄───────────── │   chroot shell   │
 └───────────────────┘   tool-use     └──────────────────┘    stdout      └──────────────────┘
 ```
@@ -15,13 +15,13 @@ Part of the [Kali AI](https://anubis.castalia.institute/) project by the [Castal
 
 | Path | Purpose |
 |------|---------|
-| [`nethunter-gemini-mcp/`](./nethunter-gemini-mcp) | The Anubis Android app (Kotlin + Jetpack Compose). Gradle `rootProject.name = "anubis"`. |
+| [`nethunter-gemini-mcp/`](./nethunter-gemini-mcp) | The Kaliyai Android app (Kotlin + Jetpack Compose). Gradle `rootProject.name = "kaliyai"`. |
 | [`nethunter-prep/`](./nethunter-prep) | Host-side scripts that stage a OnePlus One (`bacon`) with LineageOS 18.1 + TWRP + Magisk + Kali NetHunter. Large binary artifacts are git-ignored. |
-| [`nethunter-prep/openvas/`](./nethunter-prep/openvas) | **OpenVAS / GVM:** `deploy.sh` (Mac) installs Greenbone in the Kali chroot; [`docker-mac/`](./nethunter-prep/openvas/docker-mac) runs GVM in Docker and uses the phone as `gvm-cli` client over `adb reverse` (recommended on stock `bacon` kernel). See the [site](https://anubis.castalia.institute/openvas.html). |
+| [`nethunter-prep/openvas/`](./nethunter-prep/openvas) | **OpenVAS / GVM:** `deploy.sh` (Mac) installs Greenbone in the Kali chroot; [`docker-mac/`](./nethunter-prep/openvas/docker-mac) runs GVM in Docker and uses the phone as `gvm-cli` client over `adb reverse` (recommended on stock `bacon` kernel). See the [site](https://kaliyai.castalia.institute/openvas.html). |
 
 ## Cybersecurity MSAI (AINS-63xx)
 
-Kali AI / Anubis is the **open lab referent** for the **Aurnova MSAI — Cybersecurity AI** concentration. Companion **Jupyter Books** in [CastaliaInstitute](https://github.com/CastaliaInstitute):
+Kaliyai is the **open lab referent** for the **Aurnova MSAI — Cybersecurity AI** concentration. Companion **Jupyter Books** in [CastaliaInstitute](https://github.com/CastaliaInstitute):
 
 | Code | Book (Pages) | Repository |
 |------|--------------|------------|
@@ -29,9 +29,9 @@ Kali AI / Anubis is the **open lab referent** for the **Aurnova MSAI — Cyberse
 | AINS 6301 | [Automated response systems](https://castaliainstitute.github.io/ains-6301-automated-response-systems/) | [ains-6301-automated-response-systems](https://github.com/CastaliaInstitute/ains-6301-automated-response-systems) |
 | AINS 6302 | [AI for risk assessment](https://castaliainstitute.github.io/ains-6302-ai-for-risk-assessment/) | [ains-6302-ai-for-risk-assessment](https://github.com/CastaliaInstitute/ains-6302-ai-for-risk-assessment) |
 
-Rationale, learning outcomes, and how faculty can use the stack: **[Pedagogy (GitHub Pages)](https://anubis.castalia.institute/pedagogy.html)** and [`docs/pedagogy.md`](./docs/pedagogy.md).
-| [`docs/`](./docs) | GitHub Pages site describing the Kali AI project. |
-| [`.devcontainer/`](./.devcontainer) | GitHub Codespaces definition — spins up a Kali userland plus the Android SDK to build/run Anubis in the cloud. |
+Rationale, learning outcomes, and how faculty can use the stack: **[Pedagogy (GitHub Pages)](https://kaliyai.castalia.institute/pedagogy.html)** and [`docs/pedagogy.md`](./docs/pedagogy.md).
+| [`docs/`](./docs) | GitHub Pages site describing the Kaliyai project. |
+| [`.devcontainer/`](./.devcontainer) | GitHub Codespaces definition — spins up a Kali userland plus the Android SDK to build/run Kaliyai in the cloud. |
 
 ## Quick start
 
@@ -39,8 +39,8 @@ Rationale, learning outcomes, and how faculty can use the stack: **[Pedagogy (Gi
 Never commit a Gemini key. For **local** work, use a gitignored `nethunter-gemini-mcp/.env` (see `.env.example`). For **CI**, store the key only in GitHub:
 
 ```bash
-gh secret set GEMINI_API_KEY --repo CastaliaInstitute/anubis
-# paste the key at the prompt, or: gh secret set GEMINI_API_KEY -b"$KEY" --repo CastaliaInstitute/anubis
+gh secret set GEMINI_API_KEY --repo CastaliaInstitute/Kaliyai
+# paste the key at the prompt, or: gh secret set GEMINI_API_KEY -b"$KEY" --repo CastaliaInstitute/Kaliyai
 ```
 
 **Codespaces:** add the same name under **Settings → Secrets and variables → Codespaces** for this repo. `postCreate` writes it into a local, untracked `nethunter-gemini-mcp/.env` for Gradle; it is not exported to the shell and not on GitHub Pages.
@@ -59,8 +59,8 @@ cd nethunter-prep
 ```
 
 ### Open in Codespaces
-Click the "Open in GitHub Codespaces" button on the [project page](https://anubis.castalia.institute/) or:
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/CastaliaInstitute/anubis?quickstart=1)
+Click the "Open in GitHub Codespaces" button on the [project page](https://kaliyai.castalia.institute/) or:
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/CastaliaInstitute/Kaliyai?quickstart=1)
 
 ## Licensing
 
