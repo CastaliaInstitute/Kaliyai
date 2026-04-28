@@ -3,7 +3,7 @@ description: >-
   An Android app (Kotlin, Compose) using Google Gemini, MCP, and a Kali NetHunter
   chroot — plus Greenbone GVM in teaching labs. This site explains the
   technology stack; the repo holds build and automation details.
-url: https://anubis.castalia.institute
+url: https://kaliyai.castalia.institute
 baseurl: ""
 theme: jekyll-theme-cayman
 plugins:
