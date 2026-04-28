@@ -1,19 +1,19 @@
 /* Kali AI landing — complements jekyll-theme-cayman; scoped to .kali-landing + header tune */
-/* Cyan/Turquoise color scheme */
+/* True Cyan/Blue color scheme */
 
 html {
   color-scheme: dark;
 }
 
 body .page-header {
-  background: linear-gradient(165deg, #051218 0%, #0c1a1a 40%, #051218 100%);
-  border-bottom: 1px solid rgba(0, 230, 200, 0.12);
+  background: linear-gradient(165deg, #051218 0%, #0c1a20 40%, #051218 100%);
+  border-bottom: 1px solid rgba(34, 211, 238, 0.12);
   padding: 0.9rem 1.5rem 1.1rem;
 }
 
 body .page-header .project-name,
 body .page-header .project-name a {
-  color: #e8ffff !important;
+  color: #ecfeff !important;
   font-family: "Outfit", "DM Sans", system-ui, sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
@@ -22,7 +22,7 @@ body .page-header .project-name a {
 
 body .page-header .project-tagline,
 body .page-header .project-tagline a {
-  color: #8ecfd0 !important;
+  color: #67e8f9 !important;
   font-size: 0.9rem;
   font-weight: 500;
   opacity: 0.95;
@@ -30,13 +30,13 @@ body .page-header .project-tagline a {
 
 .kali-landing {
   --kali-surface: #0a1418;
-  --kali-raised: #0f1f24;
-  --kali-border: rgba(0, 230, 200, 0.16);
-  --kali-cyan: #4aded0;
-  --kali-ink: #0d0f12;
-  --kali-mist: #b8e6e6;
+  --kali-raised: #0f1f28;
+  --kali-border: rgba(34, 211, 238, 0.16);
+  --kali-cyan: #22d3ee;
+  --kali-ink: #0d0f14;
+  --kali-mist: #a5f3fc;
   font-family: "DM Sans", system-ui, sans-serif;
-  color: #c8e6e8;
+  color: #cffafe;
   margin: -0.5rem 0 0;
 }
 
@@ -44,21 +44,21 @@ body .page-header .project-tagline a {
 .kali-landing h3,
 .kali-landing h4 {
   font-family: "Outfit", "DM Sans", system-ui, sans-serif;
-  color: #e8f8f8;
+  color: #ecfeff;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .kali-landing a {
   color: var(--kali-cyan);
-  text-decoration-color: rgba(74, 222, 208, 0.4);
+  text-decoration-color: rgba(34, 211, 238, 0.4);
 }
 .kali-landing a:hover {
-  color: #6ee7e0;
+  color: #67e8f9;
 }
 .kali-landing a:focus-visible,
 .kali-landing .btn:focus-visible {
-  outline: 2px solid rgba(34, 197, 194, 0.6);
+  outline: 2px solid rgba(6, 182, 212, 0.6);
   outline-offset: 3px;
 }
 
@@ -75,12 +75,12 @@ body .page-header .project-tagline a {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% -20%, rgba(0, 180, 180, 0.28), transparent 55%),
-    radial-gradient(ellipse 50% 50% at 10% 100%, rgba(30, 120, 120, 0.2), transparent 50%),
+  background: radial-gradient(ellipse 80% 60% at 70% -20%, rgba(6, 182, 212, 0.28), transparent 55%),
+    radial-gradient(ellipse 50% 50% at 10% 100%, rgba(14, 116, 144, 0.2), transparent 50%),
     repeating-linear-gradient(
       90deg,
-      rgba(0, 255, 240, 0.03) 0,
-      rgba(0, 255, 240, 0.03) 1px,
+      rgba(34, 211, 238, 0.03) 0,
+      rgba(34, 211, 238, 0.03) 1px,
       transparent 1px,
       transparent 32px
     );
@@ -99,7 +99,7 @@ body .page-header .project-tagline a {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.7rem;
-  color: #6b9a9a;
+  color: #22d3ee;
   margin: 0 0 0.5rem;
   font-weight: 600;
 }
@@ -111,11 +111,11 @@ body .page-header .project-tagline a {
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
-  background: linear-gradient(120deg, #e8ffff 0%, #4aded0 45%, #22c5c0 100%);
+  background: linear-gradient(120deg, #ecfeff 0%, #22d3ee 45%, #06b6d4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 40px rgba(34, 197, 194, 0.2));
+  filter: drop-shadow(0 0 40px rgba(6, 182, 212, 0.25));
 }
 
 .kali-title-ai {
@@ -147,16 +147,16 @@ body .page-header .project-tagline a {
 
 .kali-logo-ampersand {
   font-size: 0.85em;
-  color: #7dd3fc;
+  color: #38bdf8;
   font-weight: 400;
   opacity: 0.9;
-  text-shadow: 0 0 20px rgba(125, 211, 252, 0.4);
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.85; text-shadow: 0 0 15px rgba(125, 211, 252, 0.3); }
-  50% { opacity: 1; text-shadow: 0 0 25px rgba(125, 211, 252, 0.5); }
+  0%, 100% { opacity: 0.85; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+  50% { opacity: 1; text-shadow: 0 0 30px rgba(56, 189, 248, 0.7); }
 }
 
 .kali-logo-ai {
@@ -167,7 +167,7 @@ body .page-header .project-tagline a {
 .kali-logo-subtitle {
   text-align: center;
   font-size: 0.75rem;
-  color: #6b9a9a;
+  color: #67e8f9;
   font-style: italic;
   margin: -0.3rem 0 0.6rem;
   letter-spacing: 0.1em;
@@ -177,7 +177,7 @@ p.kali-deck-note {
   margin: 0 0 1.1rem;
   font-size: 0.95rem;
   line-height: 1.55;
-  color: #7a9e9e;
+  color: #a5f3fc;
 }
 
 p.kali-hero-subline {
@@ -185,7 +185,7 @@ p.kali-hero-subline {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #5a8a8a;
+  color: #22d3ee;
   font-weight: 600;
 }
 
@@ -204,15 +204,15 @@ p.kali-hero-subline {
   gap: 0.35rem;
   padding: 0.35rem 0.7rem 0.4rem;
   border-radius: 999px;
-  background: rgba(0, 40, 48, 0.55);
-  border: 1px solid rgba(0, 230, 200, 0.18);
+  background: rgba(8, 51, 68, 0.55);
+  border: 1px solid rgba(34, 211, 238, 0.18);
   font-size: 0.8rem;
   line-height: 1.3;
-  color: #8eb8b8;
+  color: #a5f3fc;
 }
 
 .kali-hero-stat .kali-hero-stat-label {
-  color: #a8e8e8;
+  color: #22d3ee;
   font-weight: 600;
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -225,10 +225,10 @@ p.kali-hero-subline {
   font-size: 1.02rem;
   line-height: 1.5;
   font-style: italic;
-  color: #7ec8c8;
-  border-left: 3px solid rgba(34, 197, 194, 0.45);
+  color: #67e8f9;
+  border-left: 3px solid rgba(6, 182, 212, 0.45);
   padding: 0.2rem 0 0.2rem 0.9rem;
-  background: linear-gradient(90deg, rgba(0, 50, 50, 0.25), transparent);
+  background: linear-gradient(90deg, rgba(8, 51, 68, 0.25), transparent);
   border-radius: 0 8px 8px 0;
 }
 
@@ -245,17 +245,17 @@ p.kali-hero-subline {
   font-weight: 600;
   padding: 0.55em 1.1em;
   font-family: "DM Sans", sans-serif;
-  box-shadow: 0 0 0 1px rgba(0, 230, 200, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
   transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
 }
 .kali-hero .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 1px rgba(0, 230, 200, 0.4), 0 12px 32px rgba(0, 60, 60, 0.4);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 12px 32px rgba(8, 51, 68, 0.4);
   filter: brightness(1.05);
 }
 
 .kali-hero .btn-primary {
-  background: linear-gradient(180deg, #16a3a3, #158080);
+  background: linear-gradient(180deg, #0891b2, #0e7490);
   border: none;
 }
 
@@ -277,7 +277,7 @@ p.kali-hero-subline {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #5a8a8a;
+  color: #22d3ee;
   font-weight: 600;
   margin: 0 0 0.2rem;
 }
@@ -316,7 +316,7 @@ p.kali-hero-subline {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 230, 200, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.45), transparent);
   opacity: 0.35;
   transition: opacity 0.2s ease;
 }
@@ -325,7 +325,7 @@ p.kali-hero-subline {
 }
 
 .kali-card:hover {
-  border-color: rgba(0, 230, 200, 0.35);
+  border-color: rgba(34, 211, 238, 0.35);
   transform: translateY(-3px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
@@ -333,7 +333,7 @@ p.kali-hero-subline {
 .kali-card-icon {
   display: block;
   margin: 0 0 0.9rem;
-  color: #4aded0;
+  color: #22d3ee;
 }
 
 .kali-card h3 {
@@ -345,12 +345,12 @@ p.kali-hero-subline {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.5;
-  color: #9ebfb8;
+  color: #a5f3fc;
 }
 
 /* —— Diagram —— */
 .kali-arch {
-  background: linear-gradient(165deg, #050a0c, #0a1518 60%, #060c0c);
+  background: linear-gradient(165deg, #050c10, #0a151c 60%, #060c10);
   border: 1px solid var(--kali-border);
   border-radius: 20px;
   padding: 1.35rem 0.5rem 1.5rem;
@@ -368,7 +368,7 @@ p.kali-hero-subline {
 
 .kali-sub {
   text-align: center;
-  color: #6b8f8a;
+  color: #67e8f9;
   font-size: 0.9rem;
   margin: 0 0 1.1rem;
   max-width: 32rem;
@@ -392,7 +392,7 @@ p.kali-hero-subline {
 
 .kali-rest p,
 .kali-rest li {
-  color: #a8c9c0;
+  color: #cffafe;
   font-size: 0.95rem;
   line-height: 1.55;
 }
@@ -411,12 +411,12 @@ p.kali-hero-subline {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.7rem;
-  color: #5a8a8a;
+  color: #22d3ee;
   font-weight: 600;
   margin: 0 0 0.35rem;
 }
 p.kali-landing-p {
-  color: #a8c9c0;
+  color: #cffafe;
   font-size: 0.95rem;
   line-height: 1.55;
   margin: 0.5rem 0 0.65rem;
@@ -431,7 +431,7 @@ p.kali-landing-p + table {
 }
 .kali-comp-block h3 {
   margin: 0 0 0.4rem;
-  color: #d4f0e8;
+  color: #ecfeff;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
@@ -447,14 +447,14 @@ p.kali-landing-p + table {
 }
 .kali-components th,
 .kali-components td {
-  border: 1px solid rgba(0, 120, 100, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   padding: 0.4rem 0.55rem;
   text-align: left;
-  color: #a0c0b8;
+  color: #a5f3fc;
 }
 .kali-components th {
-  background: linear-gradient(180deg, rgba(0, 55, 55, 0.55), rgba(0, 40, 44, 0.4));
-  color: #b8e8e0;
+  background: linear-gradient(180deg, rgba(8, 51, 68, 0.55), rgba(8, 40, 55, 0.4));
+  color: #ecfeff;
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -463,7 +463,7 @@ p.kali-landing-p + table {
 .kali-table-wrap {
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(0, 100, 90, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   margin: 0.5rem 0 1rem;
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2);
 }
@@ -476,7 +476,7 @@ p.kali-landing-p + table {
   transition: background 0.12s ease;
 }
 .kali-components tbody tr:hover td {
-  background: rgba(0, 80, 80, 0.15);
+  background: rgba(8, 51, 68, 0.15);
 }
 
 /* Teaching / AINS-63xx */
@@ -486,7 +486,7 @@ p.kali-landing-p + table {
   max-width: 920px;
   border-radius: 20px;
   background: linear-gradient(145deg, rgba(25, 30, 55, 0.55) 0%, rgba(12, 20, 35, 0.75) 50%, rgba(8, 14, 24, 0.9) 100%);
-  border: 1px solid rgba(110, 130, 220, 0.22);
+  border: 1px solid rgba(130, 110, 220, 0.22);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 .kali-teach-inner {
@@ -505,17 +505,17 @@ p.kali-landing-p + table {
   margin: 0 0 0.55rem;
   font-size: 1.35rem;
   line-height: 1.2;
-  color: #e8e8ff;
+  color: #e8e4ff;
 }
 .kali-teach h2 strong {
-  color: #b5c4fd;
+  color: #c4b5fd;
   font-weight: 700;
 }
 .kali-teach-deck {
   margin: 0 0 0.85rem;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #b8b8d4;
+  color: #b8b0d4;
 }
 .kali-teach-list {
   list-style: none;
@@ -527,18 +527,18 @@ p.kali-landing-p + table {
   padding: 0.4rem 0 0.4rem 0.1rem;
   font-size: 0.9rem;
   line-height: 1.45;
-  color: #a8a8c8;
-  border-bottom: 1px solid rgba(110, 130, 220, 0.12);
+  color: #a8a0c8;
+  border-bottom: 1px solid rgba(130, 110, 220, 0.12);
 }
 .kali-teach-list li:last-child {
   border-bottom: none;
 }
 .kali-teach-list a {
-  color: #a5c4fc;
+  color: #a5b4fc;
   text-decoration: none;
 }
 .kali-teach-list a[href^="https://github.com"] {
-  color: #7dd3c0;
+  color: #22d3ee;
   font-size: 0.8rem;
   margin-left: 0.2rem;
 }
@@ -573,7 +573,7 @@ p.kali-landing-p + table {
 }
 .kali-cloud .kali-cloud-mono {
   font-size: 0.88rem;
-  color: #7a9a9a;
+  color: #67e8f9;
   margin: 0.5rem 0 0.75rem;
 }
 .kali-cloud a img {
@@ -585,7 +585,7 @@ p.kali-landing-p + table {
 }
 .kali-cloud a img:hover {
   transform: scale(1.02);
-  filter: drop-shadow(0 6px 16px rgba(60, 140, 200, 0.35));
+  filter: drop-shadow(0 6px 16px rgba(34, 211, 238, 0.35));
 }
 
 .kali-cloud-terminal {
@@ -593,25 +593,25 @@ p.kali-landing-p + table {
   margin: 0.95rem 0 0;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(0, 180, 160, 0.18);
+  border: 1px solid rgba(6, 182, 212, 0.18);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .kali-cloud-terminal-bar {
   padding: 0.2rem 0.65rem;
-  background: rgba(0, 32, 36, 0.6);
-  color: #5a9a9a;
+  background: rgba(8, 51, 68, 0.6);
+  color: #22d3ee;
   font-size: 0.65rem;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   letter-spacing: 0.04em;
-  border-bottom: 1px solid rgba(0, 120, 110, 0.2);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.2);
 }
 
 .kali-cloud-terminal pre {
   margin: 0;
   padding: 0.65rem 0.8rem;
-  background: #05080a;
-  color: #7bb8b8;
+  background: #050c10;
+  color: #67e8f9;
   font-size: 0.78rem;
   line-height: 1.5;
   overflow: auto;
@@ -629,7 +629,7 @@ p.kali-landing-p + table {
   text-align: center;
   max-width: 40rem;
   margin: 0 auto 1.5rem;
-  color: #8aadac;
+  color: #67e8f9;
   font-size: 0.95rem;
   line-height: 1.55;
 }
@@ -638,8 +638,8 @@ p.kali-landing-p + table {
   max-width: 900px;
   margin: 0 auto;
   padding: 1.75rem 1rem 2.5rem;
-  border-top: 1px solid rgba(0, 230, 200, 0.1);
-  background: linear-gradient(180deg, rgba(0, 30, 36, 0.2), transparent 50%);
+  border-top: 1px solid rgba(34, 211, 238, 0.1);
+  background: linear-gradient(180deg, rgba(8, 51, 68, 0.2), transparent 50%);
 }
 
 .kali-footer-grid {
@@ -662,7 +662,7 @@ p.kali-landing-p + table {
   font-size: 1.1rem;
   margin: 0 0 0.5rem;
   padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(0, 230, 200, 0.12);
+  border-bottom: 1px solid rgba(34, 211, 238, 0.12);
 }
 
 .kali-footer-col ul {
@@ -675,9 +675,9 @@ p.kali-landing-p + table {
   margin: 0.4rem 0;
   font-size: 0.9rem;
   line-height: 1.45;
-  color: #9ebfb8;
+  color: #a5f3fc;
   padding-left: 0.7rem;
-  border-left: 2px solid rgba(0, 180, 160, 0.2);
+  border-left: 2px solid rgba(6, 182, 212, 0.2);
 }
 
 /* Status: chips */
@@ -699,9 +699,9 @@ ul.kali-chips,
 ul.kali-chips li,
 .kali-chips li {
   font-size: 0.78rem;
-  color: #9ecfc8;
-  background: linear-gradient(180deg, #112424, #0c1f1f);
-  border: 1px solid rgba(0, 230, 200, 0.2);
+  color: #a5f3fc;
+  background: linear-gradient(180deg, #083344, #0c2434);
+  border: 1px solid rgba(34, 211, 238, 0.2);
   border-radius: 999px;
   padding: 0.4em 0.75em 0.4em 0.7em;
   font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -715,13 +715,13 @@ ul.kali-chips li,
   font-size: 0.8rem;
 }
 .kali-landing .highlight {
-  background: #05080a !important;
+  background: #050c10 !important;
   border-radius: 12px;
   border: 1px solid var(--kali-border);
   margin: 0.4rem 0 0.8rem;
 }
 .kali-landing pre {
-  color: #a8d4d0 !important;
+  color: #67e8f9 !important;
 }
 
 /* Reduce motion */
