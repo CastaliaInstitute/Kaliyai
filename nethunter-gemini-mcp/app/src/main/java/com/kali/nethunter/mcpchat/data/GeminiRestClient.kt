@@ -26,6 +26,8 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 
+private const val EMBEDDING_MODEL_DEFAULT = "models/gemini-embedding-001"
+
 sealed class GeminiResult {
     data class Text(val text: String) : GeminiResult()
     data class FunctionCalls(
@@ -113,12 +115,58 @@ class GeminiRestClient(private val client: HttpClient) {
         }
         val text = response.bodyAsText()
         if (!response.status.value.let { it in 200..299 }) {
+            android.util.Log.e("Kaliyai", "Gemini API error: HTTP ${response.status.value}, body: $text")
+            android.util.Log.e("Kaliyai", "Request URL: $url")
+            android.util.Log.e("Kaliyai", "Request body: ${body.toString().take(500)}")
             return@withContext GenerateOutcome(
                 GeminiResult.Error("HTTP ${response.status.value}: ${text.take(2000)}"),
                 buildJsonObject { put("role", "model") },
             )
         }
         parseResponse(text)
+    }
+
+    /**
+     * Text embeddings for offline RAG retrieval ([taskType] `RETRIEVAL_QUERY` vs `RETRIEVAL_DOCUMENT`).
+     * Must match the embedding model used when building the SQLite corpus (`kaliyai-rag export-sqlite`).
+     */
+    suspend fun embedContent(
+        apiKey: String,
+        text: String,
+        taskType: String = "RETRIEVAL_QUERY",
+        model: String = EMBEDDING_MODEL_DEFAULT,
+    ): FloatArray = withContext(Dispatchers.IO) {
+        val safeModel = if (model.startsWith("models/")) model else "models/$model"
+        val url =
+            "https://generativelanguage.googleapis.com/v1beta/${safeModel}:embedContent" +
+                "?key=${apiKey}"
+        val body = buildJsonObject {
+            put("model", safeModel)
+            put(
+                "content",
+                buildJsonObject {
+                    put("parts", buildJsonArray { addJsonObject { put("text", text) } })
+                },
+            )
+            put("taskType", taskType)
+        }
+        val response = client.post(url) {
+            contentType(ContentType.Application.Json)
+            header("x-goog-api-client", "kaliyai-android/1.0.0")
+            setBody(body.toString())
+        }
+        val responseBody = response.bodyAsText()
+        if (!response.status.value.let { it in 200..299 }) {
+            throw IllegalStateException("embedContent HTTP ${response.status.value}: ${responseBody.take(500)}")
+        }
+        val root = json.parseToJsonElement(responseBody).jsonObject
+        val emb = root["embedding"]?.jsonObject
+            ?: throw IllegalStateException("embedContent: no embedding in response")
+        val values = emb["values"] as? JsonArray
+            ?: throw IllegalStateException("embedContent: no embedding.values")
+        FloatArray(values.size) { i ->
+            values[i].jsonPrimitive.content.toFloat()
+        }
     }
 
     private fun parseResponse(responseBody: String): GenerateOutcome {

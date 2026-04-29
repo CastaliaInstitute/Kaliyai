@@ -7,6 +7,8 @@ import android.net.wifi.WifiManager
 import android.location.LocationManager
 import android.os.Build
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonArray
@@ -16,9 +18,12 @@ import kotlinx.serialization.json.put
 /**
  * In-process MCP-style tools shipped inside the APK (no loopback server required).
  * [callTool] returns the same shape as a remote [McpClient.tools/call] result: `content` array, optional `isError`.
+ *
+ * @param ragRetrieve Optional suspend handler for [kaliyai_rag_retrieve] (embed + SQLite search); invoked via [runBlocking] on IO.
  */
 class BuiltinMcpEngine(
     private val appContext: Context,
+    private val ragRetrieve: (suspend (JsonObject) -> JsonObject)? = null,
 ) {
     @Volatile
     var kaliConfig: KaliNethunterConfig = KaliNethunterConfig()
@@ -60,23 +65,83 @@ class BuiltinMcpEngine(
                 put("properties", buildJsonObject { })
             },
         ),
+        McpTool(
+            name = "wifi_info",
+            description = "Show current Wi-Fi connection info: connected SSID, BSSID, signal strength, link speed, IP address.",
+            inputSchema = buildJsonObject {
+                put("type", "object")
+                put("properties", buildJsonObject { })
+            },
+        ),
+    )
+
+    private val ragToolDefs: List<McpTool> = listOf(
+        McpTool(
+            name = "kaliyai_rag_retrieve",
+            description = "Retrieve relevant excerpts from the offline RAG SQLite corpus (default: Downloads/kaliyai_rag.db; optional path override in Settings). " +
+                "Use for standards-grounded answers (NIST, OWASP, MITRE, methodology). Requires GEMINI_API_KEY for query embedding.",
+            inputSchema = buildJsonObject {
+                put("type", "object")
+                put(
+                    "properties",
+                    buildJsonObject {
+                        put(
+                            "query",
+                            buildJsonObject {
+                                put("type", "string")
+                                put("description", "Natural-language search query (embedded then matched against stored chunks).")
+                            },
+                        )
+                        put(
+                            "domain",
+                            buildJsonObject {
+                                put("type", "string")
+                                put(
+                                    "description",
+                                    "Optional meta.domain filter (e.g. web-security). Empty uses Settings default or no filter.",
+                                )
+                            },
+                        )
+                        put(
+                            "top_k",
+                            buildJsonObject {
+                                put("type", "integer")
+                                put("description", "Max chunks to return (1–32; default from Settings).")
+                            },
+                        )
+                    },
+                )
+                put("required", buildJsonArray { add(JsonPrimitive("query")) })
+            },
+        ),
     )
 
     fun isKaliMcpTool(name: String): Boolean = name.startsWith("kali_nethunter_")
 
     fun listCoreToolsOnly(): List<McpTool> = coreToolDefs
 
+    /** Offline RAG retrieval tool (merged into remote MCP tool lists too). */
+    fun listRagToolsOnly(): List<McpTool> = ragToolDefs
+
     fun listKaliToolsOnly(): List<McpTool> = buildKaliMcpToolDefs()
 
     /**
      * Full in-app list when no remote MCP URL (core + Kali/NetHunter).
      */
-    fun listTools(): List<McpTool> = listCoreToolsOnly() + listKaliToolsOnly()
+    fun listTools(): List<McpTool> = listCoreToolsOnly() + listRagToolsOnly() + listKaliToolsOnly()
 
     fun callTool(name: String, arguments: JsonObject): JsonObject = when (name) {
+        "kaliyai_rag_retrieve" -> {
+            val h = ragRetrieve
+            if (h == null) {
+                McpResponse.error("kaliyai_rag_retrieve: handler not installed (app bug)")
+            } else {
+                runBlocking(Dispatchers.IO) { h(arguments) }
+            }
+        }
         "echo" -> {
             val msg = (arguments["message"] as? JsonPrimitive)?.content ?: "empty"
-            mcpTextResult("echo: $msg")
+            McpResponse.text("echo: $msg")
         }
         "device_info" -> {
             val p = appContext.packageName
@@ -98,13 +163,45 @@ class BuiltinMcpEngine(
                 appendLine("androidSdk=${Build.VERSION.SDK_INT} (${Build.VERSION.RELEASE})")
                 appendLine("app=$p $v")
             }
-            mcpTextResult(s.trim())
+            McpResponse.text(s.trim())
         }
-        "wifi_scan" -> mcpTextResult(wifiScanText())
-        "kali_nethunter_info" -> mcpTextResult(kaliNethunterInfoText())
-        "kali_nethunter_list_tools" -> mcpTextResult(kaliNethunterListToolsText())
+        "wifi_scan" -> McpResponse.text(wifiScanText())
+        "wifi_info" -> McpResponse.text(wifiInfoText())
+        "kali_nethunter_info" -> McpResponse.text(kaliNethunterInfoText())
+        "kali_nethunter_list_tools" -> McpResponse.text(kaliNethunterListToolsText())
         "kali_nethunter_exec" -> kaliNethunterExec(arguments)
-        else -> mcpErrorResult("unknown tool: $name")
+        else -> McpResponse.error("unknown tool: $name")
+    }
+
+    @Suppress("DEPRECATION")
+    private fun wifiInfoText(): String {
+        val wm = appContext.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        if (!wm.isWifiEnabled) {
+            return "wifi_info: Wi-Fi radio is off."
+        }
+
+        val connectionInfo = wm.connectionInfo
+        if (connectionInfo == null || connectionInfo.networkId == -1) {
+            return "wifi_info: Not connected to any Wi-Fi network."
+        }
+
+        return buildString {
+            appendLine("wifi_info: Current Connection")
+            appendLine()
+            val ssid = if (connectionInfo.ssid != null && connectionInfo.ssid != "<unknown ssid>") {
+                connectionInfo.ssid.replace("\"", "")
+            } else {
+                "<hidden or unknown>"
+            }
+            appendLine("SSID: $ssid")
+            appendLine("BSSID: ${connectionInfo.bssid ?: "unknown"}")
+            appendLine("Signal: ${connectionInfo.rssi} dBm")
+            appendLine("Link Speed: ${connectionInfo.linkSpeed} Mbps")
+            if (connectionInfo.ipAddress != 0) {
+                val ip = android.text.format.Formatter.formatIpAddress(connectionInfo.ipAddress)
+                appendLine("IP Address: $ip")
+            }
+        }.trimEnd()
     }
 
     private fun kaliNethunterInfoText(): String = buildString {
@@ -138,17 +235,17 @@ class BuiltinMcpEngine(
 
     private fun kaliNethunterExec(arguments: JsonObject): JsonObject {
         if (!kaliConfig.execEnabled) {
-            return mcpErrorResult(
+            return McpResponse.error(
                 "kali_nethunter_exec: disabled in Settings. Enable “NetHunter / Kali exec” to run chroot commands.",
             )
         }
         val line = (arguments["command"] as? JsonPrimitive)?.content?.trim().orEmpty()
         if (line.isEmpty()) {
-            return mcpErrorResult("kali_nethunter_exec: required argument 'command' (string) is missing or empty")
+            return McpResponse.error("kali_nethunter_exec: required argument 'command' (string) is missing or empty")
         }
         val timeout = parseTimeoutSec(arguments)
         if (isSemiInteractiveTtyRequest(line)) {
-            return mcpErrorResult(
+            return McpResponse.error(
                 "kali_nethunter_exec: use non-interactive command lines only (e.g. `nmap -h`, not shells or curses TUI).",
             )
         }
@@ -157,7 +254,7 @@ class BuiltinMcpEngine(
             timeoutSec = timeout,
             config = kaliConfig,
         )
-        return if (o.ok) mcpTextResult(o.text) else mcpErrorResult(o.text)
+        return if (o.ok) McpResponse.text(o.text) else McpResponse.error(o.text)
     }
 
     private fun parseTimeoutSec(arguments: JsonObject): Long {
@@ -283,32 +380,4 @@ class BuiltinMcpEngine(
         }
     }
 
-    private fun mcpTextResult(text: String): JsonObject = buildJsonObject {
-        put(
-            "content",
-            buildJsonArray {
-                add(
-                    buildJsonObject {
-                        put("type", "text")
-                        put("text", text)
-                    },
-                )
-            },
-        )
-    }
-
-    private fun mcpErrorResult(message: String): JsonObject = buildJsonObject {
-        put("isError", "true")
-        put(
-            "content",
-            buildJsonArray {
-                add(
-                    buildJsonObject {
-                        put("type", "text")
-                        put("text", message)
-                    },
-                )
-            },
-        )
-    }
 }

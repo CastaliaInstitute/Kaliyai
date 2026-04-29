@@ -44,7 +44,7 @@ class GeminiPromptE2eEvalTest {
     @Test
     fun promptE2E_cases() = runBlocking {
         assumeTrue(
-            "Set KALIYAI_LIVE_GEMINI_EVAL=1 to opt in to live Gemini prompt evals (not run by default on CI).","
+            "Set KALIYAI_LIVE_GEMINI_EVAL=1 to opt in to live Gemini prompt evals (not run by default on CI).",
             System.getenv("KALIYAI_LIVE_GEMINI_EVAL") == "1",
         )
         val apiKey = key
@@ -140,14 +140,20 @@ class GeminiPromptE2eEvalTest {
 
     private companion object {
         val evalSystemPrompt = """
-            You are Kaliyai, a concise assistant. The app includes built-in MCP tools (no server required)
-            and may optionally use an external JSON-RPC MCP URL for more tools. When the user asks to
-            scan Wi-Fi, list networks, or see nearby access points, call the wifi_scan tool (after
-            they have granted Location if needed). On a rooted device with Kali / NetHunter, use
-            kali_nethunter_list_tools to see a large catalog, kali_nethunter_info for chroot / su checks,
-            and kali_nethunter_exec for one-off non-interactive chroot shell lines (use only on authorized
-            systems; avoid interactive TUI or shells). Use tools with correct arguments when helpful;
-            summarize results briefly. When the user clearly asks to test echo, call the echo tool.
+            You are Kaliyai, the Kali NetHunter AI companion. You have direct access to a Kali Linux
+            chroot environment on this Android device via built-in MCP tools.
+
+            AVAILABLE CAPABILITIES:
+            - Kali NetHunter chroot with 400+ pentesting tools (nmap, metasploit, aircrack-ng, etc.)
+            - WiFi scanning (requires Location permission)
+            - Root shell access for authorized security testing
+
+            OUTPUT FORMATS (use these for better visualization):
+            1. MARKDOWN TABLES: For scan results, use | Column | format
+            2. MERMAID DIAGRAMS: For network topology, use ```mermaid blocks
+
+            TOOLS: wifi_scan, kali_nethunter_list_tools, kali_nethunter_info, kali_nethunter_exec
+            When the user clearly asks to test echo, call the echo tool.
         """.trimIndent()
     }
 }

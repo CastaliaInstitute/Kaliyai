@@ -1,34 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Kaliyai launcher icon: jackal head, gold on lapis -->
+<!-- Kaliyai launcher icon: Dragon Rook - chess tower with serpent/dragon elements -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!-- Dark background circle -->
     <path
         android:fillColor="#0A1628"
         android:pathData="M12,1C5.9,1 1,5.9 1,12s4.9,11 11,11 11,-4.9 11,-11S18.1,1 12,1z" />
     <path
         android:fillColor="#111D35"
-        android:pathData="M12,3.5C7,3.5 3.5,7 3.5,12S7,20.5 12,20.5 20.5,17 20.5,12 17,3.5 12,3.5z" />
-    <!-- Ears (upright) -->
+        android:pathData="M12,2.5C6.7,2.5 2.5,6.7 2.5,12S6.7,21.5 12,21.5 21.5,17.3 21.5,12 17.3,2.5 12,2.5z" />
+
+    <!-- Dragon Rook Tower Base -->
     <path
-        android:fillColor="#DDB04A"
-        android:pathData="M7.5,4L6,1.2L6.2,5.5L7.5,4zM16.5,4L18,1.2L17.8,5.5L16.5,4z" />
-    <!-- Head & muzzle main mass -->
+        android:fillColor="#2D4A3E"
+        android:pathData="M7,20L7,16.5L17,16.5L17,20L12,20.5z" />
+
+    <!-- Tower Body with Dragon Scale Texture -->
     <path
-        android:fillColor="#E8C56B"
-        android:pathData="M7,7.5Q7,5.5 9,5.5L12,5.5L15,5.5Q17,5.5 17,7.5L17,15Q17,17 15,17.5L12,18.5L9,17.5Q7,17 7,15L7,7.5z" />
-    <!-- Long snout (profile) -->
+        android:fillColor="#4A7C59"
+        android:pathData="M7.5,16.5L7.5,10L8,9.5L8.5,10L9,9.5L9.5,10L10,9.5L10.5,10L11,9.5L11.5,10L12,9.5L12.5,10L13,9.5L13.5,10L14,9.5L14.5,10L15,9.5L15.5,10L16,10L16.5,16.5z" />
+
+    <!-- Dragon Scales (vertical rows on tower) -->
     <path
-        android:fillColor="#C9A03A"
-        android:pathData="M16,9.5L22,10.5L21.5,14L16,14.5L15.5,11.5L16,9.5z" />
-    <!-- Eye -->
+        android:fillColor="#3D6B4A"
+        android:pathData="M8.5,14.5L9,15L9.5,14.5L9,14zM10.5,14.5L11,15L11.5,14.5L11,14zM12.5,14.5L13,15L13.5,14.5L13,14zM14.5,14.5L15,15L15.5,14.5L15,14z" />
+    <path
+        android:fillColor="#3D6B4A"
+        android:pathData="M8.5,12L9,12.5L9.5,12L9,11.5zM10.5,12L11,12.5L11.5,12L11,11.5zM12.5,12L13,12.5L13.5,12L13,11.5zM14.5,12L15,12.5L15.5,12L15,11.5z" />
+
+    <!-- Rook Crenellations (Battlements) - Dragon Horns -->
+    <path
+        android:fillColor="#5D8E6B"
+        android:pathData="M6.5,10L6.5,7L7.5,7L7.5,8.5L8.5,8.5L8.5,7L9.5,7L9.5,8.5L10.5,8.5L10.5,7L11.5,7L11.5,8.5L12.5,8.5L12.5,7L13.5,7L13.5,8.5L14.5,8.5L14.5,7L15.5,7L15.5,8.5L16.5,8.5L16.5,7L17.5,7L17.5,10L12,10.5z" />
+
+    <!-- Dragon Eye on Tower -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M11,12.5m-0.8,0a0.8,0.8 0 1,1 1.6,0a0.8,0.8 0 1,1 -1.6,0" />
     <path
         android:fillColor="#0A1628"
-        android:pathData="M13,9.5m-0.9,0a0.9,0.9 0 1,1 1.8,0a0.9,0.9 0 1,1 -1.8,0" />
-    <!-- Collar -->
+        android:pathData="M11,12.5m-0.4,0a0.4,0.4 0 1,1 0.8,0a0.4,0.4 0 1,1 -0.8,0" />
+
+    <!-- Second Dragon Eye -->
     <path
-        android:fillColor="#6B4E12"
-        android:pathData="M7,16.5L7.5,18.2L12,19.2L16.5,18.2L17,16.5L12,17.3L7,16.5z" />
+        android:fillColor="#FFD700"
+        android:pathData="M13,12.5m-0.8,0a0.8,0.8 0 1,1 1.6,0a0.8,0.8 0 1,1 -1.6,0" />
+    <path
+        android:fillColor="#0A1628"
+        android:pathData="M13,12.5m-0.4,0a0.4,0.4 0 1,1 0.8,0a0.4,0.4 0 1,1 -0.8,0" />
+
+    <!-- Serpent Tail wrapping around tower -->
+    <path
+        android:fillColor="#6B4E3D"
+        android:pathData="M6,14Q5,12 6,10Q7,8 8,9L8.5,10Q7.5,9.5 7,11Q6.5,12 7,13.5L6,14z" />
+
+    <!-- Dragon Spikes on tower top -->
+    <path
+        android:fillColor="#8B7355"
+        android:pathData="M7,7L6.5,5.5L7.5,6.5L8,5L8.5,6.5zM14,7L14.5,5.5L15.5,6.5L16,5L16.5,6.5z" />
+
+    <!-- Serpent head peeking from behind -->
+    <path
+        android:fillColor="#5D4E6D"
+        android:pathData="M18,11Q19,10 19.5,11Q20,12 19.5,13Q19,14 18,13L17.5,12z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M19,11.5L19.3,11.3L19.5,11.5z" />
 </vector>

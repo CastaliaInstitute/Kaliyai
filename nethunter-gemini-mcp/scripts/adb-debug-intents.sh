@@ -19,17 +19,24 @@ case "${1:-}" in
   refresh|refresh_mcp) view "mcpchat://debug/refresh_mcp" ;;
   ping) view "mcpchat://debug/ping" ;;
   send)
-    msg="${2:?usage: $0 send <message>}"
-    # Query form (encode spaces minimally for typical tests)
-    enc=$(printf '%s' "$msg" | sed 's/ /%20/g')
+    shift
+    msg="${*:?usage: $0 send <message>}"
+    # URL encode spaces and special characters
+    enc=$(printf '%s' "$msg" | sed 's/ /%20/g; s/?/%3F/g; s/&/%26/g')
     view "mcpchat://debug/send?q=${enc}"
     ;;
   s|cmd_settings) command --es cmd settings ;;
   c|cmd_clear) command --es cmd clear ;;
   r|cmd_refresh) command --es cmd refresh_mcp ;;
   m|cmd_send)
-    msg="${2:?usage: $0 cmd_send <message>}"
-    command --es cmd send --es message "$msg"
+    shift
+    msg="${*:?usage: $0 cmd_send <message>}"
+    # Use explicit message param to avoid shell word splitting issues
+    adb shell am start \
+      -a "com.kali.nethunter.mcpchat.debug.COMMAND" \
+      -n "${ACT}" \
+      --es "cmd" "send" \
+      --es "message" "$msg"
     ;;
   *)
     echo "Usage: $0 {settings|clear|refresh|ping|send <msg>|s|c|r|m <msg>}" >&2

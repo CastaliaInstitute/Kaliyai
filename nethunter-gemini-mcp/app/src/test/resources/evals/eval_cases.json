@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "Kaliyai: built-in MCP, intent examples, and optional live Gemini e2e (set KALIYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh.",
+  "version": 2,
+  "description": "Kaliyai: built-in MCP, operator field evals, intent examples, and optional live Gemini e2e (set KALIYAI_LIVE_GEMINI_EVAL=1 and GEMINI_API_KEY). See scripts/run-evals.sh and kaliyai_operator_evals.json for comprehensive SecOps scenarios.",
   "builtin": [
     {
       "id": "echo_basic",

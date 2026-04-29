@@ -60,6 +60,34 @@ data class RoutingCase(
     val suggestedTool: String,
 )
 
+/** [`evals/rag_eval_cases.json`] — offline stubbed `kaliyai_rag_retrieve` expectations. */
+@Serializable
+data class RagEvalFile(
+    val version: Int = 1,
+    val description: String? = null,
+    @SerialName("ragToolStubCases")
+    val ragToolStubCases: List<RagToolStubCase> = emptyList(),
+) {
+    companion object {
+        private val json = Json { ignoreUnknownKeys = true; isLenient = true }
+
+        fun load(stream: InputStream): RagEvalFile =
+            json.decodeFromString<RagEvalFile>(stream.bufferedReader().readText())
+    }
+}
+
+@Serializable
+data class RagToolStubCase(
+    val id: String,
+    val args: JsonObject = JsonObject(emptyMap()),
+    @SerialName("textContains")
+    val textContains: List<String> = emptyList(),
+    @SerialName("textNotContains")
+    val textNotContains: List<String> = emptyList(),
+    @SerialName("expectIsError")
+    val expectIsError: Boolean? = null,
+)
+
 object McpResultParsers {
     fun text(mcp: JsonObject): String {
         val arr = mcp["content"]?.jsonArray ?: return ""

@@ -37,9 +37,19 @@ fun readGeminiApiKeyFromEnv(envFile: File): String {
 fun escapeForJavaStringLiteral(s: String): String =
     s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", " ").replace("\r", "")
 
-val geminiKeyFromRootEnv: String = readGeminiApiKeyFromEnv(
-    rootProject.layout.projectDirectory.file(".env").asFile,
-)
+/** Resolve sibling repo `castalia.institute/.env` (see README). */
+fun castaliaInstituteEnvFile(gradleRoot: File): File =
+    gradleRoot.parentFile.resolve("../castalia.institute/.env").normalize()
+
+val geminiKeyFromRootEnv: String = run {
+    val gradleRoot = rootProject.layout.projectDirectory.asFile
+    val local = readGeminiApiKeyFromEnv(File(gradleRoot, ".env"))
+    if (local.isNotEmpty()) {
+        local
+    } else {
+        readGeminiApiKeyFromEnv(castaliaInstituteEnvFile(gradleRoot))
+    }
+}
 val buildConfigGeminiValue: String = if (geminiKeyFromRootEnv.isEmpty()) {
     "\"\""
 } else {
@@ -100,6 +110,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("androidx.webkit:webkit:1.8.0")
     debugImplementation("androidx.compose.ui:ui-tooling")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.robolectric:robolectric:4.14.1")

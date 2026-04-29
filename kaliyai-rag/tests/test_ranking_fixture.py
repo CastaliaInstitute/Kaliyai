@@ -10,7 +10,7 @@ import pytest
 from kaliyai_rag.ranking_fixture import FIXTURE_N_CHUNKS, build_fixture_chunks, write_ranking_sqlite
 from kaliyai_rag.sqlite_search import search_sqlite
 
-FIXTURE_DB = Path(__file__).resolve().parents[1] / "fixtures" / "ranking" / "kaliyai_ranking.db"
+FIXTURE_DB = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "ranking" / "kaliyai_ranking.db"
 
 
 def test_committed_fixture_db_exists() -> None:

@@ -33,6 +33,18 @@ object KaliNethunterCommandRunner {
     private fun chrootBashList(su: String, shim: String, line: String): List<String> =
         listOf(su, "0", shim, "bash", "-lc", line)
 
+    // Direct chroot command for devices without traditional wrappers (bootkali/kali/nethunter)
+    private fun directChrootList(su: String, line: String): List<String> {
+        // Use chroot with proper environment setup
+        // Mount required filesystems first, then run command with clean env
+        val chrootPath = "/data/local/nhsystem/kali-armhf"
+        val envSetup = "HOME=/root PATH=/usr/bin:/bin:/usr/sbin:/sbin"
+        // First mount necessary filesystems, then execute command
+        val mountCmd = "mount -t proc proc $chrootPath/proc 2>/dev/null; mount -t sysfs sysfs $chrootPath/sys 2>/dev/null; mount -o bind /dev $chrootPath/dev 2>/dev/null; mount -t devpts devpts $chrootPath/dev/pts 2>/dev/null; true"
+        val chrootCmd = "chroot $chrootPath /usr/bin/env -i $envSetup $line"
+        return listOf(su, "-c", "$mountCmd && $chrootCmd")
+    }
+
     fun run(
         line: String,
         timeoutSec: Long,
@@ -57,6 +69,7 @@ object KaliNethunterCommandRunner {
             listOf("bootkali", "kali", "nethunter")
         }
         var lastErr: String? = null
+        // Try traditional NetHunter wrappers first
         for (sh in shims) {
             val r = runOnce(chrootBashList(su, sh, line), t, tag = "su→$sh")
             if (r.ok) return r
@@ -66,6 +79,10 @@ object KaliNethunterCommandRunner {
             }
             return r
         }
+        // Fall back to direct chroot (for minimal/custom NetHunter installs)
+        val directR = runOnce(directChrootList(su, line), t, tag = "su→chroot")
+        if (directR.ok) return directR
+        lastErr = directR.text
         return Outcome(
             false,
             lastErr ?: "kali_nethunter_exec: all attempts failed (try a custom chroot wrapper in Settings).",

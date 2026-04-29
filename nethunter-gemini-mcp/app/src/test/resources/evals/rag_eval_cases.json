@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "description": "Offline RAG evals: stubbed kaliyai_rag_retrieve handler (no Gemini, no SQLite). See RagToolStubEvalTest. Optional live RAG: RagRetrieveLiveEvalTest + KALIYAI_LIVE_RAG_EVAL=1 + GEMINI_API_KEY + KALIYAI_RAG_EVAL_DB.",
+  "ragToolStubCases": [
+    {
+      "id": "rag_retrieve_with_query_returns_excerpts",
+      "args": {
+        "query": "NIST Cybersecurity Framework governance functions",
+        "top_k": 4,
+        "domain": "governance"
+      },
+      "textContains": ["kaliyai_rag_retrieve", "NIST", "sim=", "CSF"],
+      "textNotContains": ["missing non-empty"],
+      "expectIsError": false
+    },
+    {
+      "id": "rag_retrieve_empty_query_errors",
+      "args": { "query": "" },
+      "textContains": ["kaliyai_rag_retrieve", "missing", "query"],
+      "expectIsError": true
+    }
+  ]
+}
