@@ -1,0 +1,272 @@
+# MVP corpus pointers for Kaliyai RAG — authoritative URLs and ingestion metadata.
+# Do not commit license-restricted PDFs to git; download locally under kaliyai-rag/data/ (gitignored).
+#
+# Fields mirror ChunkMetadata (kaliyai_rag.schema) plus notes.
+
+sources:
+  - source: NIST Cybersecurity Framework
+    version: CSF 2.0
+    domain: governance
+    framework: NIST
+    tier: 1
+    mvp: true
+    uri: https://www.nist.gov/cyberframework
+
+  - source: NIST Workforce Framework for Cybersecurity
+    version: NICE (latest)
+    domain: governance
+    framework: NIST
+    tier: 1
+    mvp: true
+    uri: https://www.nist.gov/itl/applied-cybersecurity/nice
+
+  - source: CIS Critical Security Controls
+    version: v8.1
+    domain: defensive-controls
+    framework: CIS
+    tier: 1
+    mvp: true
+    uri: https://www.cisecurity.org/controls/
+
+  - source: MITRE ATT&CK
+    version: Enterprise (current)
+    domain: threat-intel
+    framework: MITRE
+    tier: 1
+    mvp: true
+    uri: https://attack.mitre.org/
+
+  - source: MITRE ATT&CK
+    version: Mobile (current)
+    domain: threat-intel
+    framework: MITRE
+    tier: 1
+    mvp: true
+    uri: https://attack.mitre.org/matrices/mobile/
+
+  - source: MITRE D3FEND
+    version: current
+    domain: defensive-controls
+    framework: MITRE
+    tier: 1
+    mvp: true
+    uri: https://d3fend.mitre.org/
+
+  - source: CISA Cross-Sector Cybersecurity Performance Goals
+    version: "2.0"
+    domain: defensive-controls
+    framework: CISA
+    tier: 1
+    mvp: true
+    uri: https://www.cisa.gov/topics/cyber-threats-and-advisories/free-cybersecurity-services-and-tools/cross-sector-cybersecurity-performance-goals
+
+  - source: CISA Known Exploited Vulnerabilities Catalog
+    version: feed
+    domain: vuln-intel
+    framework: CISA
+    tier: 1
+    mvp: true
+    uri: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+    notes: Public JSON/CSV — safe to automate fetch for chunking.
+
+  - source: OWASP Top 10
+    version: 2021 / 2025 (use latest published)
+    domain: web-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://owasp.org/www-project-top-ten/
+
+  - source: OWASP API Security Top 10
+    version: "2023"
+    domain: web-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://owasp.org/www-project-api-security/
+
+  - source: OWASP Web Security Testing Guide
+    version: stable / latest
+    domain: web-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://owasp.org/www-project-web-security-testing-guide/
+
+  - source: OWASP Application Security Verification Standard
+    version: latest
+    domain: web-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://owasp.org/www-project-application-security-verification-standard/
+
+  - source: OWASP Cheat Sheet Series
+    version: latest
+    domain: web-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://cheatsheetseries.owasp.org/
+
+  - source: OWASP Mobile Application Security
+    version: MASVS / MASTG (latest)
+    domain: mobile-security
+    framework: OWASP
+    tier: 1
+    mvp: true
+    uri: https://owasp.org/www-project-mobile-security-testing-guide/
+
+  - source: NIST SP 800-115
+    version: Rev. (current)
+    domain: governance
+    framework: NIST
+    tier: 1
+    mvp: true
+    uri: https://csrc.nist.gov/publications/detail/sp/800-115/final
+
+  - source: NIST SP 800-61
+    version: Rev. 3
+    domain: ir-detection
+    framework: NIST
+    tier: 1
+    mvp: true
+    uri: https://csrc.nist.gov/publications/detail/sp/800-61/rev-3/final
+
+  - source: NIST SP 800-53
+    version: Rev. 5
+    domain: governance
+    framework: NIST
+    tier: 1
+    mvp: true
+    uri: https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+
+  - source: CVE / NVD
+    version: feeds
+    domain: vuln-intel
+    framework: NVD
+    tier: 2
+    mvp: true
+    uri: https://nvd.nist.gov/vuln/data-feeds
+    notes: Large JSON feeds — index selectively (product/version slices).
+
+  - source: CWE
+    version: corpus / Top 25
+    domain: vuln-intel
+    framework: MITRE
+    tier: 2
+    mvp: true
+    uri: https://cwe.mitre.org/
+
+  - source: PTES
+    version: methodology
+    domain: offensive-methodology
+    framework: PTES
+    tier: 3
+    mvp: true
+    uri: http://www.pentest-standard.org/
+
+  - source: Nmap Reference Guide
+    version: bundled with Nmap / online
+    domain: scanning-enumeration
+    framework: Nmap
+    tier: 4
+    mvp: true
+    uri: https://nmap.org/book/man.html
+
+  - source: Burp Suite Documentation
+    version: current
+    domain: web-security
+    framework: PortSwigger
+    tier: 4
+    mvp: true
+    uri: https://portswigger.net/burp/documentation
+
+  - source: OWASP ZAP Documentation
+    version: current
+    domain: web-security
+    framework: OWASP
+    tier: 4
+    mvp: true
+    uri: https://www.zaproxy.org/docs/
+
+  - source: Wireshark Documentation
+    version: current
+    domain: network-forensics
+    framework: Wireshark
+    tier: 4
+    mvp: true
+    uri: https://www.wireshark.org/docs/
+
+  - source: Aircrack-ng Documentation
+    version: current
+    domain: wireless
+    framework: Aircrack-ng
+    tier: 4
+    mvp: true
+    uri: https://www.aircrack-ng.org/documentation.html
+
+  - source: SigmaHQ Rules
+    version: GitHub default branch
+    domain: ir-detection
+    framework: SigmaHQ
+    tier: 5
+    mvp: true
+    uri: https://github.com/SigmaHQ/sigma
+
+  - source: Elastic Detection Rules
+    version: GitHub default branch
+    domain: ir-detection
+    framework: Elastic
+    tier: 5
+    mvp: true
+    uri: https://github.com/elastic/detection-rules
+
+  - source: Splunk Security Content
+    version: GitHub default branch
+    domain: ir-detection
+    framework: Splunk
+    tier: 5
+    mvp: true
+    uri: https://github.com/splunk/security_content
+
+  - source: Azure Sentinel built-in / community queries
+    version: docs + repo samples
+    domain: cloud-azure
+    framework: Microsoft
+    tier: 5
+    mvp: true
+    uri: https://learn.microsoft.com/azure/sentinel/
+
+  - source: AWS Security documentation
+    version: current
+    domain: cloud-aws
+    framework: AWS
+    tier: 6
+    mvp: true
+    uri: https://docs.aws.amazon.com/security/
+
+  - source: Google Cloud security documentation
+    version: current
+    domain: cloud-gcp
+    framework: Google
+    tier: 6
+    mvp: true
+    uri: https://cloud.google.com/security/docs
+
+  - source: Kubernetes hardening guidance
+    version: NSA/CISA guide + upstream docs
+    domain: containers-kubernetes
+    framework: NSA/CISA
+    tier: 6
+    mvp: true
+    uri: https://kubernetes.io/docs/concepts/security/
+
+  - source: CIS Benchmarks
+    version: per-platform current
+    domain: defensive-controls
+    framework: CIS
+    tier: 7
+    mvp: true
+    uri: https://www.cisecurity.org/cis-benchmarks
+    notes: Distribution/licensing applies — ingest only what your license permits.

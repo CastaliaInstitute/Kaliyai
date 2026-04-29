@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "embedding_dim": 64,
+  "seed": 42,
+  "num_chunks": 5,
+  "chunks": [
+    {
+      "chunk_index": 0,
+      "fixture_id": "gov-0",
+      "body_prefix": "GOVERNANCE_TARGET NIST CSF identity prot"
+    },
+    {
+      "chunk_index": 1,
+      "fixture_id": "d1",
+      "body_prefix": "RECIPE_DISTRACTOR pizza dough flour yeas"
+    },
+    {
+      "chunk_index": 2,
+      "fixture_id": "d2",
+      "body_prefix": "SPORT_DISTRACTOR baseball innings home r"
+    },
+    {
+      "chunk_index": 3,
+      "fixture_id": "d3",
+      "body_prefix": "MUSIC_DISTRACTOR jazz blues scale modes "
+    },
+    {
+      "chunk_index": 4,
+      "fixture_id": "d4",
+      "body_prefix": "TRAVEL_DISTRACTOR airport gate layover v"
+    }
+  ],
+  "query_same_as_chunk_index": 0,
+  "expected_rank_one_fixture_id": "gov-0"
+}

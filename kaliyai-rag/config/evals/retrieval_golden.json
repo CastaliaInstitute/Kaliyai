@@ -1,0 +1,163 @@
+{
+  "version": 2,
+  "description": "Extensive golden retrieval against sample_corpus/readme_excerpt.md (single chunk + governance domain). Pipeline: chunk-file → embed-jsonl → export-sqlite → eval-retrieval. Requires GEMINI_API_KEY.",
+  "cases": [
+    {
+      "id": "kaliyai_android_kali_bridge",
+      "query": "How does Kaliyai connect Android to Kali Linux or NetHunter?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["NetHunter", "Android", "Gemini", "MCP"],
+      "meta_source_contains": "Kaliyai"
+    },
+    {
+      "id": "offline_rag_sqlite_placement",
+      "query": "Where should the offline RAG SQLite database file go on the device?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Downloads", "kaliyai_rag.db", "SQLite"]
+    },
+    {
+      "id": "castalia_cyber_msai",
+      "query": "What organization offers the cybersecurity MSAI concentration related to Kaliyai?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Castalia", "Aurnova", "MSAI"]
+    },
+    {
+      "id": "repo_android_folder",
+      "query": "Which folder in the repository contains the Jetpack Compose Android application?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["nethunter-gemini-mcp", "Compose", "Android"]
+    },
+    {
+      "id": "governance_domain_chunk",
+      "query": "What pedagogy or faculty pages are mentioned for learning outcomes?",
+      "top_k": 4,
+      "domain": "governance",
+      "body_contains_any": ["castalia.institute", "pedagogy", "faculty"],
+      "meta_source_contains": "Kaliyai"
+    },
+    {
+      "id": "mcp_bridge_paraphrase",
+      "query": "What protocol bridges Gemini to the pen-testing toolchain?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["MCP", "Model Context Protocol", "Gemini"]
+    },
+    {
+      "id": "kali_y_ai_etymology",
+      "query": "What does the name Kaliyai abbreviate or stand for?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Kali Y AI", "Kali and AI", "NetHunter"]
+    },
+    {
+      "id": "chroot_execution",
+      "query": "How does command execution reach Kali on the phone?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["chroot", "NetHunter", "shell"]
+    },
+    {
+      "id": "public_website_url",
+      "query": "Where is the public Kaliyai site hosted?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["kaliyai.castalia.institute", "Castalia"]
+    },
+    {
+      "id": "kaliyai_rag_tooling_folder",
+      "query": "Which directory has chunk metadata and SQLite export for offline retrieval?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["kaliyai-rag", "Gemini", "SQLite"]
+    },
+    {
+      "id": "nethunter_prep_devices",
+      "query": "Which device examples are mentioned for NetHunter preparation scripts?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["OnePlus", "bacon", "LineageOS", "Magisk"]
+    },
+    {
+      "id": "jupyter_books_topics",
+      "query": "What topics do the companion Jupyter Books cover?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["threat detection", "risk", "Jupyter"]
+    },
+    {
+      "id": "env_api_key_warning",
+      "query": "What should you avoid committing when building the Android app?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["GEMINI_API_KEY", "Never commit", "gitignored"]
+    },
+    {
+      "id": "gradle_project_name",
+      "query": "What is the Gradle rootProject.name for this project?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["kaliyai", "Gradle"]
+    },
+    {
+      "id": "msai_paraphrase_academic",
+      "query": "Which academic concentration uses Kaliyai as an open lab reference?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Aurnova", "Cybersecurity", "MSAI"]
+    },
+    {
+      "id": "offline_downloads_short",
+      "query": "Downloads folder kaliyai_rag.db",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Downloads", "kaliyai_rag.db"]
+    },
+    {
+      "id": "gemini_function_calls",
+      "query": "What API does Kaliyai use for function calling before NetHunter?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Gemini", "function", "Android"]
+    },
+    {
+      "id": "castalia_institute_parent",
+      "query": "Which institute runs the Kali AI project?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["Castalia", "Institute"]
+    },
+    {
+      "id": "rag_jsonl_embedded",
+      "query": "What format are SQLite chunks exported from?",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["JSONL", "embedded", "SQLite"]
+    },
+    {
+      "id": "governance_filter_pedagogy",
+      "query": "Learning outcomes lab workflows",
+      "top_k": 5,
+      "domain": "governance",
+      "body_contains_any": ["pedagogy", "kaliyai.castalia.institute"],
+      "meta_source_contains": "Kaliyai"
+    },
+    {
+      "id": "pentest_toolchain_phrasing",
+      "query": "Pen testing toolchain on Android via AI assistant",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["pen-testing", "Android", "Gemini"]
+    },
+    {
+      "id": "sd_card_offline_phrasing",
+      "query": "Offline vectors on SD card path for kaliyai rag",
+      "top_k": 6,
+      "domain": null,
+      "body_contains_any": ["SD card", "SQLite", "Downloads"]
+    }
+  ]
+}

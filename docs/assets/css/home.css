@@ -555,6 +555,69 @@ p.kali-landing-p + table {
   box-shadow: 0 6px 20px rgba(40, 30, 100, 0.45);
 }
 
+/* RAG / indexed corpora */
+.kali-corpus {
+  margin: 0 auto 2rem;
+  padding: 1.65rem 1.25rem 1.75rem;
+  max-width: 1000px;
+  border-radius: 20px;
+  background: linear-gradient(155deg, rgba(8, 45, 58, 0.5) 0%, rgba(6, 22, 32, 0.82) 55%, rgba(5, 12, 18, 0.92) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.32);
+}
+.kali-corpus-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.kali-corpus-kicker {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+  color: #22d3ee;
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+}
+.kali-corpus h2 {
+  text-align: center;
+  margin: 0 0 0.65rem;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+.kali-corpus-deck {
+  margin: 0 auto 1.15rem;
+  max-width: 46rem;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: #a5f3fc;
+  text-align: center;
+}
+.kali-corpus-grid {
+  margin-top: 0.25rem;
+}
+.kali-corpus-grid .kali-card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+.kali-corpus-note {
+  margin: 1.1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #67e8f9;
+  text-align: center;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.kali-corpus-note code {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78em;
+  color: #cffafe;
+  background: rgba(8, 51, 68, 0.45);
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
 /* Cloud strip */
 .kali-cloud {
   max-width: 800px;

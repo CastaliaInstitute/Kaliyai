@@ -1,0 +1,29 @@
+# Logical buckets for Kaliyai/Kali&AI RAG (ingestion routing + metadata.domain hints).
+# Physical files live under sources/ after scripts/bootstrap_seed_pack.sh — not committed.
+
+collections:
+  cyber_standards:
+    description: NIST, CIS, CISA prose, OWASP methodology, MITRE narrative docs, PTES.
+    suggested_domain: governance
+    includes:
+      - nist_pdfs
+      - owasp_git_repos  # Top10, WSTG, ASVS, CheatSheetSeries, API-Security
+
+  cyber_intel_structured:
+    description: ATT&CK STIX, CTI STIX, KEV JSON/CSV, future NVD/CVE slices — prefer structured stores / selective chunking.
+    suggested_domain: vuln-intel
+    includes:
+      - mitre_attack_stix
+      - mitre_cti
+      - cisa_kev_feeds
+      # EPSS, NVD bulk JSON: refresh separately; treat as structured tables where possible.
+
+  cyber_tools_and_detection:
+    description: Sigma, Elastic, Splunk, Sentinel, optional Nuclei (lab-gated).
+    suggested_domain: ir-detection
+    includes:
+      - sigma_repo
+      - elastic_detection_rules
+      - splunk_security_content
+      - azure_sentinel
+      - nuclei_templates  # safety-gated; lab / authorized testing only

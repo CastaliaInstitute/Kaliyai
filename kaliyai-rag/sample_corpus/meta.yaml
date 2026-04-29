@@ -1,0 +1,11 @@
+source: Kaliyai repository README (sample)
+version: "local-sample"
+domain: governance
+task_type: [interpretation]
+framework: Castalia
+maps_to: []
+offensive_risk: low
+allowed_use: defensive
+evidence_type: [documentation]
+audience: [student, analyst]
+uri: https://kaliyai.castalia.institute/

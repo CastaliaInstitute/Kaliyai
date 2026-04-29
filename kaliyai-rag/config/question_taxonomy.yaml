@@ -1,0 +1,73 @@
+# Analyst workflow questions → suggested meta.domain / task_type filters for retrieval.
+# Use these as hints when routing tools or building hybrid filters.
+
+questions:
+  - id: allowed-scope
+    prompt: What am I allowed to test?
+    suggested_filters:
+      domain: governance
+      task_type: [test-plan]
+
+  - id: assets
+    prompt: What assets exist?
+    suggested_filters:
+      domain: recon-asset-discovery
+      task_type: [interpretation]
+
+  - id: exposure
+    prompt: What is exposed?
+    suggested_filters:
+      domain: recon-asset-discovery
+      task_type: [interpretation, test-plan]
+
+  - id: tool-output
+    prompt: What does this tool output mean?
+    suggested_filters:
+      task_type: [interpretation]
+
+  - id: vulnerability
+    prompt: Is this vulnerable?
+    suggested_filters:
+      domain: vuln-intel
+      task_type: [interpretation]
+
+  - id: exploitability
+    prompt: Is it exploitable in this context?
+    suggested_filters:
+      domain: vuln-intel
+      task_type: [interpretation]
+      allowed_use: authorized
+
+  - id: safe-next-step
+    prompt: What is the safe next validation step?
+    suggested_filters:
+      task_type: [test-plan, remediation]
+      allowed_use: defensive
+
+  - id: business-risk
+    prompt: What is the business risk?
+    suggested_filters:
+      audience: [executive, analyst]
+      task_type: [interpretation]
+
+  - id: framework-mapping
+    prompt: What framework mappings apply?
+    suggested_filters:
+      task_type: [interpretation]
+
+  - id: remediation
+    prompt: What remediation should be done?
+    suggested_filters:
+      task_type: [remediation]
+
+  - id: detection
+    prompt: How do I detect this?
+    suggested_filters:
+      domain: ir-detection
+      task_type: [detection]
+
+  - id: reporting
+    prompt: How do I report it?
+    suggested_filters:
+      domain: reporting
+      task_type: [interpretation]

@@ -38,3 +38,10 @@ nethunter-prep/openvas/**/.secrets/**
 # Logs / temp
 *.log
 tmp/
+
+# Kaliyai RAG local corpus + secrets (see kaliyai-rag/README.md)
+kaliyai-rag/data/
+kaliyai-rag/.env
+kaliyai-rag/**/*.db
+# Bulk cloned repos + downloaded PDFs/feeds (see kaliyai-rag/docs/CORPUS_SEED_PACK.md)
+kaliyai-rag/sources/

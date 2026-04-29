@@ -36,6 +36,10 @@ elif [[ -f "${REPO_ROOT}/.env" ]] && grep -qE '^[[:space:]]*GEMINI_API_KEY[[:spa
   umask 077
   cp "${REPO_ROOT}/.env" "${REPO_ROOT}/${MCP_ENV}"
   echo "    copied repo-root .env -> ${MCP_ENV} (untracked)"
+elif [[ -f "${REPO_ROOT}/../castalia.institute/.env" ]] && grep -qE '^[[:space:]]*GEMINI_API_KEY[[:space:]]*=' "${REPO_ROOT}/../castalia.institute/.env" 2>/dev/null; then
+  umask 077
+  grep -E '^[[:space:]]*GEMINI_API_KEY[[:space:]]*=' "${REPO_ROOT}/../castalia.institute/.env" | head -1 > "${REPO_ROOT}/${MCP_ENV}"
+  echo "    wrote ${MCP_ENV} from ../castalia.institute/.env (GEMINI_API_KEY line only; key not shown)"
 elif [[ -n "${GEMINI_API_KEY:-}" ]]; then
   write_env_from_env_var
 else

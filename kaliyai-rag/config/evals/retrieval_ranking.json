@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "description": "Deterministic multi-chunk ranking (no Gemini): query vector = embedding of chunk N; expects correct fixture_id at rank 1. DB + vectors from kaliyai_rag.ranking_fixture (refresh-ranking-fixture).",
+  "fixture_db": "tests/fixtures/ranking/kaliyai_ranking.db",
+  "cases": [
+    {
+      "id": "rank_one_matches_chunk_zero",
+      "query_same_as_chunk_index": 0,
+      "top_k": 5,
+      "domain": null,
+      "expect_rank_one_fixture_id": "gov-0",
+      "expect_body_contains": "GOVERNANCE_TARGET"
+    },
+    {
+      "id": "domain_filter_excludes_all",
+      "query_same_as_chunk_index": 0,
+      "top_k": 5,
+      "domain": "nonexistent_domain_xyz",
+      "expect_empty_hits": true
+    },
+    {
+      "id": "rank_two_when_query_matches_second_chunk",
+      "query_same_as_chunk_index": 1,
+      "top_k": 5,
+      "domain": null,
+      "expect_rank_one_fixture_id": "d1",
+      "expect_body_contains": "RECIPE_DISTRACTOR"
+    }
+  ]
+}

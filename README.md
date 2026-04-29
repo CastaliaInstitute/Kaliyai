@@ -16,6 +16,7 @@ Part of the [Kali AI](https://kaliyai.castalia.institute/) project by the [Casta
 | Path | Purpose |
 |------|---------|
 | [`nethunter-gemini-mcp/`](./nethunter-gemini-mcp) | The Kaliyai Android app (Kotlin + Jetpack Compose). Gradle `rootProject.name = "kaliyai"`. |
+| [`kaliyai-rag/`](./kaliyai-rag) | **RAG tooling** for the Kali&AI corpus: chunk metadata schema, Gemini embeddings, Postgres/pgvector SQL, ingestion CLI (`kaliyai-rag/README.md`). |
 | [`nethunter-prep/`](./nethunter-prep) | Host-side scripts that stage a OnePlus One (`bacon`) with LineageOS 18.1 + TWRP + Magisk + Kali NetHunter. Large binary artifacts are git-ignored. |
 | [`nethunter-prep/openvas/`](./nethunter-prep/openvas) | **OpenVAS / GVM:** `deploy.sh` (Mac) installs Greenbone in the Kali chroot; [`docker-mac/`](./nethunter-prep/openvas/docker-mac) runs GVM in Docker and uses the phone as `gvm-cli` client over `adb reverse` (recommended on stock `bacon` kernel). See the [site](https://kaliyai.castalia.institute/openvas.html). |
 
@@ -36,7 +37,7 @@ Rationale, learning outcomes, and how faculty can use the stack: **[Pedagogy (Gi
 ## Quick start
 
 ### Build the Android app
-Never commit a Gemini key. For **local** work, use a gitignored `nethunter-gemini-mcp/.env` (see `.env.example`). For **CI**, store the key only in GitHub:
+Never commit a Gemini key. For **local** work, use a gitignored `nethunter-gemini-mcp/.env` (see `.env.example`), or place `GEMINI_API_KEY` in a sibling checkout **`../castalia.institute/.env`** — Gradle uses that when the local `.env` has no key. For **CI**, store the key only in GitHub:
 
 ```bash
 gh secret set GEMINI_API_KEY --repo CastaliaInstitute/Kaliyai

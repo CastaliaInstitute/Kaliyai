@@ -87,6 +87,29 @@ title: Kali AI — Kaliyai
   </div>
 </section>
 
+<section class="kali-corpus" id="rag-corpus" aria-label="RAG corpora and indexed sources">
+  <div class="kali-corpus-inner">
+    <p class="kali-corpus-kicker">Kaliyai RAG · indexed sources</p>
+    <h2>What we’re indexing</h2>
+    <p class="kali-corpus-deck">The <a href="https://github.com/CastaliaInstitute/Kaliyai/tree/main/kaliyai-rag"><strong>kaliyai-rag</strong></a> package chunks and embeds <strong>public cybersecurity corpora</strong> so Kaliyai can retrieve grounded prose and tables offline or alongside Gemini — evidence tagged by domain (governance, threat intel, detection engineering). Work is organized into <strong>three buckets</strong>: standards and assessment methodology, machine-readable intel feeds, and vendor-neutral detection content.</p>
+    <div class="kali-pillar-grid kali-corpus-grid">
+      <article class="kali-card">
+        <h3>Cyber standards &amp; methodology</h3>
+        <p><strong>NIST</strong> (CSF, SP 800 series), <strong>CIS</strong> Controls and benchmarks where licensing allows, <strong>CISA</strong> guidance, <strong>OWASP</strong> (Top 10, ASVS, WSTG, cheat sheets, mobile), <strong>MITRE</strong> D3FEND, and narrative sources such as <strong>PTES</strong> — prose-heavy references for policy, secure design, and testing methodology.</p>
+      </article>
+      <article class="kali-card">
+        <h3>Structured cyber intelligence</h3>
+        <p><strong>MITRE ATT&amp;CK</strong> and CTI in <strong>STIX</strong>, <strong>CISA KEV</strong> and related feeds, and selective slices of <strong>NVD/CVE/CWE</strong> where bulk JSON is indexed as structured rows or trimmed chunks rather than whole-database dumps.</p>
+      </article>
+      <article class="kali-card">
+        <h3>Detection &amp; platform rules</h3>
+        <p><strong>Sigma</strong>, <strong>Elastic</strong> and <strong>Splunk</strong> detection-rule repos, <strong>Microsoft Sentinel</strong> query samples and docs, optional <strong>Nuclei</strong> templates where labs authorize offensive templates — content aimed at IR, SOC engineering, and cloud detection parity.</p>
+      </article>
+    </div>
+    <p class="kali-corpus-note">Authoritative MVP URLs and tiers live in <code>kaliyai-rag/config/sources_mvp.yaml</code>; logical groupings for ingestion routing are in <code>kaliyai-rag/config/corpus_collections.yaml</code>. For corpus bootstrap and evaluation harnesses, see <code>kaliyai-rag/README.md</code> and <code>kaliyai-rag/docs/CORPUS_SEED_PACK.md</code> in the repo.</p>
+  </div>
+</section>
+
 <section class="kali-arch" id="flow" aria-label="Architecture diagram">
   <p class="kali-section-kicker">Data flow</p>
   <h2>How it fits together</h2>
@@ -151,6 +174,7 @@ title: Kali AI — Kaliyai
       <tr><td>Tool abstraction</td><td><a href="https://modelcontextprotocol.io/">Model Context Protocol</a> — in-process “host” in the app, mapping calls to Kali/ADB/GVM as appropriate</td></tr>
       <tr><td>Linux tool ecosystem</td><td><a href="https://www.kali.org/">Kali</a> userland in a <a href="https://www.kali.org/docs/nethunter/">NetHunter</a> <strong>chroot</strong></td></tr>
       <tr><td>Managed vulnerability assessment</td><td><a href="https://www.greenbone.net/en/blog/openvas-and-gvm-terminology-openvas-gvm-gmp-greenbone-terminology-de-mystified-for-technical-users-01/">GVM / Greenbone</a> (GMP, GSA, NVT feed) — <a href="{{ '/openvas.html' | relative_url }}">lab integration</a></td></tr>
+      <tr><td>Retrieval corpora (RAG)</td><td><a href="https://github.com/CastaliaInstitute/Kaliyai/tree/main/kaliyai-rag">kaliyai-rag</a> — chunked/embed indexed standards, intel feeds, and detection repos (<a href="#rag-corpus">overview above</a>); Postgres/pgvector or offline store per deployment</td></tr>
       <tr><td>Optional dev &amp; CI environment</td><td><a href="https://containers.dev/">Dev Containers</a> (Ubuntu, JDK, Android SDK, <a href="https://docs.docker.com/get-started/introduction/#docker-in-docker">Docker</a> sidecar) — <a href="{{ '/codespaces.html' | relative_url }}">how we use it</a></td></tr>
     </tbody>
   </table>
@@ -186,6 +210,7 @@ title: Kali AI — Kaliyai
 - **Greenbone GVM** — NVT / GMP / GSA
 - **Devcontainer** (optional) — build + Kali sidecar
 - **AINS 6300–6302** Jupyter Books
+- **RAG corpora** — NIST/CIS/OWASP · ATT&CK/KEV · Sigma/Splunk/Sentinel
 {: .kali-chips}
 
   </div>
